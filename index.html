@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruchi Tarangam - Waves of Flavors</title>
-    <!-- FontAwesome for clean icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -12,7 +11,7 @@
             --secondary: #FF8C00;
             --dark: #2F2F2F;
             --light: #FFF8F0;
-            --bg-accent: #FFF3E0; /* Rich warm background color accent */
+            --bg-accent: #FFF3E0; 
             --white: #ffffff;
             --shadow: rgba(0, 0, 0, 0.1);
         }
@@ -27,12 +26,12 @@
         body {
             background-color: var(--light);
             color: var(--dark);
-            padding-bottom: 40px; /* Space for the sticky bottom marquee */
+            padding-bottom: 40px; 
         }
 
         /* --- HEADER & NAVIGATION --- */
         header {
-            background-color: var(--bg-accent); /* Warm header color */
+            background-color: var(--bg-accent); 
             box-shadow: 0 2px 10px var(--shadow);
             position: sticky;
             top: 0;
@@ -58,14 +57,13 @@
             cursor: pointer;
         }
 
-        /* Adjusted Logo container to hold a perfectly circular format */
         .logo-img {
             width: 180px;
             height: 180px;
             max-width: 6in;
             max-height: 6in;
             object-fit: cover;
-            border-radius: 50%; /* Made logo perfectly circular */
+            border-radius: 50%; 
             border: 4px solid var(--secondary);
             background-color: var(--white);
         }
@@ -239,7 +237,6 @@
             margin: 8px auto 0;
         }
 
-        /* Decreased Heading Font Size Specifically for Shop Categories Title */
         .shop-categories-title {
             font-size: 1.5rem; 
             text-align: center;
@@ -266,9 +263,10 @@
             margin-bottom: 50px;
         }
 
+        /* Category Card: Added 24px (1.5rem) border radius formatting */
         .category-card {
             background-color: var(--white);
-            border-radius: 12px;
+            border-radius: 24px; /* Applied 24px / 1.5rem cleanly */
             overflow: hidden;
             box-shadow: 0 4px 8px var(--shadow);
             text-align: center;
@@ -282,10 +280,10 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         }
 
-        /* Adjusted homepage layout blocks to safely fit at least 6x6 inches (approx 576px box max) */
+        /* Image dimension tailored exactly for the 6x6 inch footprint constraint */
         .category-card img {
             width: 100%;
-            height: 380px; /* Increased image length/height profile matching 6x6 target ratios */
+            height: 380px; 
             max-height: 6in;
             object-fit: cover;
         }
@@ -295,7 +293,7 @@
             color: var(--dark);
             font-size: 1.3rem;
             font-weight: 700;
-            background-color: var(--bg-accent); /* Added colorful backing to category labels */
+            background-color: var(--bg-accent); 
             border-top: 1px solid rgba(255,140,0,0.2);
         }
 
@@ -385,7 +383,7 @@
             flex-direction: column;
             flex-grow: 1;
             justify-content: space-between;
-            background-color: #fffdfb; /* Soft color layout variant on item body surfaces */
+            background-color: #fffdfb; 
         }
 
         .product-title {
@@ -548,7 +546,6 @@
             color: #888;
         }
 
-        /* Store Policies Disclaimers */
         .policy-disclaimer {
             text-align: center;
             font-size: 0.75rem;
@@ -723,12 +720,10 @@
 </head>
 <body>
 
-    <!-- Top Info Bar -->
     <div class="shipping-banner">
         <i class="fa-solid fa-truck-fast"></i> Free Shipping on all orders above ₹999!
     </div>
 
-    <!-- --- HEADER AND NAV --- -->
     <header>
         <div class="nav-container">
             <a onclick="showPage('home')" class="logo-area">
@@ -764,9 +759,7 @@
         </div>
     </header>
 
-    <!-- --- HOME PAGE --- -->
     <div id="page-home" class="page active-page">
-        <!-- Decreased text sizing target -->
         <h2 class="shop-categories-title">Shop Our Home Made Categories</h2>
         <div class="category-grid">
             <div class="category-card" onclick="showPage('pickles'); filterPickles('all');">
@@ -787,7 +780,6 @@
             </div>
         </div>
 
-        <!-- ABOUT US SECTION -->
         <div class="about-section">
             <h2 class="section-title">About Us</h2>
             <div class="about-content">
@@ -796,7 +788,6 @@
         </div>
     </div>
 
-    <!-- --- PICKLES PAGE --- -->
     <div id="page-pickles" class="page">
         <h2 class="section-title">Pickles Collection</h2>
         <div class="sub-nav">
@@ -807,26 +798,22 @@
         <div id="pickles-grid" class="products-container"></div>
     </div>
 
-    <!-- --- PODIS PAGE --- -->
     <div id="page-podis" class="page">
         <h2 class="section-title">Podis</h2>
         <div id="podis-grid" class="products-container"></div>
     </div>
 
-    <!-- --- SWEETS PAGE --- -->
     <div id="page-sweets" class="page">
         <h2 class="section-title">Sweets</h2>
         <div id="sweets-grid" class="products-container"></div>
     </div>
 
-    <!-- --- SNACKS PAGE --- -->
     <div id="page-snacks" class="page">
         <h2 class="section-title">Snacks</h2>
         <div id="snacks-grid" class="products-container"></div>
     </div>
 
 
-    <!-- --- WISHLIST SIDE PANEL --- -->
     <div id="wishlist-panel" class="side-panel">
         <div class="panel-header">
             <h2>My Wishlist</h2>
@@ -836,7 +823,6 @@
     </div>
 
 
-    <!-- --- CART / CHECKOUT SIDE PANEL --- -->
     <div id="cart-panel" class="side-panel">
         <div class="panel-header">
             <h2>Your Shopping Cart</h2>
@@ -911,7 +897,6 @@
     </div>
 
 
-    <!-- --- FOOTER --- -->
     <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -945,7 +930,6 @@
         </div>
     </footer>
 
-    <!-- --- STICKY BOTTOM MARQUEE BAR --- -->
     <div class="marquee-wrapper">
         <div class="marquee-content">
             <span><i class="fa-solid fa-leaf"></i> No Added Preservatives</span>
@@ -959,7 +943,6 @@
         </div>
     </div>
 
-    <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
         const productsData = {
             veg: [
@@ -1024,7 +1007,6 @@
         let cart = [];
         let wishlist = [];
 
-        // --- PAGE ROUTING SYSTEM ---
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active-page'));
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
@@ -1039,7 +1021,6 @@
             closeAllPanels();
         }
 
-        // --- PICKLES FILTER ENGINE ---
         function filterPickles(type) {
             document.getElementById('btn-all-pickles').classList.toggle('active', type === 'all');
             document.getElementById('btn-veg').classList.toggle('active', type === 'veg');
@@ -1058,7 +1039,6 @@
             container.innerHTML = combinedHTML;
         }
 
-        // --- PRODUCT ELEMENT INJECTION ENGINE ---
         function generateProductHTML(item, categoryKey) {
             const isWishlisted = wishlist.includes(item.id) ? 'active' : '';
             return `
@@ -1129,7 +1109,6 @@
             document.getElementById('snacks-grid').innerHTML = productsData.snacks.map(item => generateProductHTML(item, 'snacks')).join('');
         }
 
-        // --- GLOBAL SEARCH ENGINE ---
         function handleSearch() {
             const query = document.getElementById('search-input').value.toLowerCase();
             if(query.trim() !== "") {
@@ -1142,7 +1121,6 @@
             }
         }
 
-        // --- PANEL TOGGLES ---
         function togglePanel(panelType) {
             const cartPanel = document.getElementById('cart-panel');
             const wishlistPanel = document.getElementById('wishlist-panel');
@@ -1161,7 +1139,6 @@
             document.getElementById('wishlist-panel').classList.remove('open');
         }
 
-        // --- CART MANAGEMENT ---
         function addToCart(id, category) {
             const sizeIndex = parseInt(document.getElementById(`size-${id}`).value);
             const qty = parseInt(document.getElementById(`qty-${id}`).innerText);
@@ -1233,7 +1210,6 @@
             document.getElementById('cart-grand-total').innerText = `₹${grandTotal}`;
         }
 
-        // --- WISHLIST MANAGEMENT ---
         function toggleWishlist(id, category) {
             const heartBtn = document.getElementById(`wish-${id}`);
             const index = wishlist.indexOf(id);
@@ -1272,7 +1248,6 @@
             }).join('');
         }
 
-        // --- WHATSAPP DISPATCH CHECKOUT ---
         function handleCheckout(event) {
             event.preventDefault();
             if(cart.length === 0) return;
