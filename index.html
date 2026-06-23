@@ -1,152 +1,944 @@
-I have online page called Ruchi tarangam where i sell pickles(veg pickles, non veg pickles), podis, sweets, snacks. I want to build a website in git. So help me with the code. 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruchi Tarangam | Waves of Flavors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --secondary: #f57c00;
+            --dark: #212121;
+            --light: #fff8f5;
+            --white: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
 
-The design should be as below:
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
 
-In the very 1st page it should show me the logo of our business which is Ruchi Tarangam(Waves of flavors). 
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
 
-Next it should options like home, pickles, podis, sweets and snacks. In the same line it should display icon and next to it, should show cart option, and also wishlist as well . Anything that i add to cart or wishlist should be added to that particular options. 
+        /* Utility classes */
+        .hidden { display: none !important; }
 
-Below to that it should display shop our home made categories
+        /* Header & Brand Space */
+        header {
+            background: var(--white);
+            text-align: center;
+            padding: 20px 15px 10px;
+            box-shadow: var(--shadow);
+        }
 
-Next line it should give me a scrolling saying (no added preservatives, No chemicals, No added colors, No palm oil)
+        .logo-container {
+            max-width: 220px;
+            height: 120px;
+            border: 2px dashed #ccc;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #777;
+            position: relative;
+            overflow: hidden;
+        }
 
-Next to that it should give me options to click on images like pickles, podis, sweets, snacks. When i click on images, only then it should redirect to all the particular options in that product. 
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+        }
 
-Example when i click on pickles image, only then it should redirect to pickles page and it show separately veg pickles and non veg pickles option. And i select veg pickles it should display only veg pickles. And when i select non veg pickles it should display only non veg pickles. 
+        .tagline {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-style: italic;
+            font-weight: 600;
+        }
 
-Similarly when i click on podis image it should redirect to podis menu etc 
+        /* Persistent Navigation Bar */
+        .navbar {
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-Ok in pickles. We have veg and non veg pickles separately.  1st it should give me option to view Veg pickles. In that I should add below products in veg pickles: Tamato, Usirikaya, Kakarkaya, Pandumirchi, Nimakaya, Allam, Gongura, Cauliflower Avakaya, Vankay Avakaya 
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-right: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
 
-Next It should give Non veg pickles Title option to select. In that I should add bekow products : Bhimavaram spl Royala Avakaya, Boneless Chicken pickle, Chicken pickle with bone, Mutton pickle with bone, Mutton pickle with boneless, Gongura Boneless chicken pickle,  
+        .nav-links::-webkit-scrollbar { display: none; }
 
-Then it should give me an option to select quantities like 250gm, 500gm and 1Kg and if I increase quantity from 1 to 2,  it should add the price of all the quantities I add and display the price
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
 
-Apparently, after I select 250gm only then it should display price of that particular for 250gm similarly for 500gm and 1 kg. It should not show me, the price of 250gm/500gm/1kg directly inside the drop-down. Suppose if I select 250gm, Next in the price section it show me price. 
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
 
-Next title Option should be Podis :
-In that the items to be added are, Karam podi, Karivepaku podi, Palli karampodi, Nuvvulu Karampodi, Avisaginjalu podi,  Homemade Garam masala podi
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: var(--white);
+            padding-left: 10px;
+        }
 
-Next title Option should be Sweets :
-Bellam Gavvalu, Nuvvulu Ariselu, Kajjikayalu, Paakundalu, Bellam Chalividi, Bellam Nuvvulu undalu, Palli undalu, Bellam Gorimitilu, Nethi Ravva laddu, Kobbari undalu, Sweet Maida biscuits, Nethi Poornam Bobatlu, Maramaralu Laddu, Jeedipappu Achu 
+        .nav-icon {
+            font-size: 1.25rem;
+            color: var(--dark);
+            cursor: pointer;
+            position: relative;
+            background: none;
+            border: none;
+        }
 
-Next title Option should be snacks :
-Corn flakes mixture, Andhra mixture, Atukulu mixture, Sanna karpusa, Karam gavvalu, Aaku pakodi, Masala jeedipappu, Janthikalu, Chekkalu 
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
 
-After i place the order it should directly send the order details to my whstapp number (9533338836)
+        /* Search Bar */
+        .search-container {
+            padding: 10px 15px;
+            background: #f0f0f0;
+            display: flex;
+            gap: 8px;
+        }
 
-I will give you the updated prices. edit and give me the code again
-{ name: "Tomato", prices: [150, 300, 500] },
-                    { name: "Usirikaya", prices: [150, 300, 500] },
-                    { name: "Kakarkaya", prices: [150, 300, 500] },
-                    { name: "Pandumirchi", prices: [150, 300, 500] },
-                    { name: "Nimakaya", prices: [150, 300, 500] },
-                    { name: "Allam", prices: [150, 300, 500] },
-                    { name: "Gongura", prices: [150, 300, 500] },
-                    { name: "Cauliflower Avakaya", prices: [150, 300, 500] },
-                    { name: "Vankay Avakaya", prices: [150, 300, 500] }
-                ]
-            },
-            nonveg: {
-                sizes: ["250gm", "500gm", "1Kg"],
-                items: [
-                    { name: "Bhimavaram spl Royala Avakaya", prices: [425, 850, 1700] },
-                    { name: "Boneless Chicken pickle", prices: [375, 750, 1500] },
-                    { name: "Chicken pickle with bone", prices: [325, 650, 1300] },
-                    { name: "Mutton pickle with bone", prices: [400, 800, 1600] },
-                    { name: "Mutton pickle with boneless", prices: [500, 1000, 2000] },
-                    { name: "Gongura Boneless chicken pickle", prices: [400, 800, 1600] }
-                ]
-            },
-            podi: {
-                sizes: ["250gm", "500gm", "1Kg"],
-                items: [
-                    { name: "Karam podi", prices: [230, 460, 920] },
-                    { name: "Karivepaku podi", prices: [230, 460, 920] },
-                    { name: "Palli karampodi", prices: [230, 460, 920] },
-                    { name: "Nuvvulu Karampodi", prices: [230, 460, 920] },
-                    { name: "Kandi karampodi", prices: [230, 460, 920] },
-                    { name: "Avisaginjalu podi", prices: [230, 460, 920] },
-                    { name: "Homemade Garam masala podi", prices: [250, 500, 1000] }
-                ]
-            },
-            sweet: {
-                sizes: ["250gm", "500gm", "1Kg"],
-                items: [
-                    { name: "Bellam Gavvalu", prices: [150, 300, 600] },
-                    { name: "Ghee Nuvvulu Ariselu", prices: [200, 400, 800] },
-                    { name: "Kajjikayalu", prices: [180, 360, 720] },
-                    { name: "Paakundalu", prices: [180, 360, 720] },
-                    { name: "Bellam Chalividi", prices: [180, 360, 720] },
-                    { name: "Bellam Nuvvulu undalu", prices: [180, 360, 720] },
-                    { name: "Palli undalu", prices: [180, 360, 720] },
-                    { name: "Bellam Gorimitilu", prices: [160, 320, 640] },
-                    { name: "Nethi Ravva laddu", prices: [160, 320, 640] },
-                    { name: "Kobbari undalu", prices: [180, 360, 720] },
-                    { name: "Sweet Maida biscuits", prices: [160, 320, 640] },
-                    { name: "Nethi Poornam Bobatlu", prices: [210, 420, 840] },
-                    { name: "Nethi sunnundalu", prices: [190, 380, 760] },
-                    { name: "Dryfruits Laddu", prices: [320, 640, 1280] }
-                    { name: "Kaju pakam", prices: [390, 790, 1580] }
-                ]
-            },
+        .search-container input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
 
-            snacks: {
-                sizes: ["250gm", "500gm", "1Kg"],
-                items: [
-                    { name: "Corn flakes mixture", prices: [160, 320, 640] },
-                    { name: "Andhra mixture", prices: [160, 320, 640] },
-                    { name: "Atukulu mixture", prices: [160, 320, 640] },
-                    { name: "Sanna karpusa", prices: [160, 320, 640] },
-                    { name: "Karam gavvalu", prices: [160, 320, 640] },
-                    { name: "Aaku pakodi", prices: [160, 320, 640] },
-                    { name: "Masala Kaju", prices: [380, 760, 1520] },
-                    { name: "Janthikalu", prices: [160, 320, 640] },
-                    { name: "Chekkalu", prices: [160, 320, 640] }
-                ]
+        /* Announcement Scrolling Text */
+        .ticker-wrap {
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 0;
+            overflow: hidden;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
 
-The Address details should be below format and the fields should be mandatory to be filled
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+            padding-left: 100%;
+        }
 
-Name :
-Country: Should by default be india
-State(should give drop-down to add states
-Address:
-Apartment, suite, etc(Optional) :
-City:
-Pincode:
-Phone number:
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
 
-This site should user friendly on phone.  Help me with the code which should be user-friendly on phone as well
+        .ticker span {
+            margin-right: 50px;
+        }
 
-1st page should also display abt us
+        /* Section Styling */
+        .section {
+            padding: 25px 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--dark);
+            position: relative;
+        }
 
-Our details :
-Trade name: Ruchi Tarangam
-Phone number: 9533338836
-Email: ruchitarangam.official@gmail.com
-Physical address: Plot no:373, Lakshmi Sai meadows colony, Road no:7, Beeramguda, Sangareddy district, Telangana, 502032 
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
 
-Menu
-Home
-Veg Pickles
-Non-Veg Pickle’s
-Podis
-Sweet’s
-Snacks
+        /* Sub-category Filter Toggles */
+        .sub-toggle-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
 
-Should also contain search button and cart option in the 1st page itself
+        .btn-toggle {
+            padding: 8px 20px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-Also add our Instagram page link : https://www.instagram.com/ruchitarangam?igsh=Z3Y2cnQ2anNtbmt1&utm_-source=qr
+        .btn-toggle.active {
+            background: var(--primary);
+            color: var(--white);
+        }
 
+        /* Visual Grids */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
 
+        .category-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
-NOTE : 2 things should be noted. for snacks do not put the word hot snacks. It should only be snacks. 
+        .category-card:active {
+            transform: scale(0.97);
+        }
 
-2nd thing remove the images that you uploaded. I will manually download all the images and upload the images.
+        .image-placeholder {
+            width: 100%;
+            height: 140px;
+            background: #eaeaea;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
 
-3rd thing, for few items, name is overlapping the wishlist icon, check that and give me code
+        .category-card h3 {
+            padding: 12px 5px;
+            font-size: 1rem;
+            color: var(--dark);
+        }
 
-Also for every individual pickle, podi, sweet and snacks i should have the option to upload picture
+        /* Product Cards & Overlap Fixes */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
 
-Give me good space to upload our ruchi tarangam llogo as well
+        @media (min-width: 768px) {
+            .product-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        /* Dynamic Title Spacing Frame to block wrapping overlap with Actions */
+        .product-header {
+            padding-right: 35px; 
+            min-height: 48px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dark);
+            word-wrap: break-word;
+            line-height: 1.3;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #ccc;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .wishlist-btn.active {
+            color: #e53935;
+        }
+
+        .product-card select, .product-card input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            background-color: #fafafa;
+        }
+
+        .price-display {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 1.05rem;
+            margin: 4px 0 10px;
+            min-height: 24px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        /* Cart & Checkout Page layout */
+        .cart-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        /* About Us Frame */
+        .about-box {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-top: 15px;
+        }
+
+        footer {
+            background: #212121;
+            color: #aaa;
+            padding: 30px 15px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: var(--secondary); text-decoration: none; }
+        .social-link { font-size: 1.8rem; color: #e1306c; margin-top: 10px; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <span>[Upload Logo Space]</span>
+        </div>
+        <div class="tagline">Waves of Flavors</div>
+    </header>
+
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#" class="active" onclick="switchTab('home')">Home</a>
+            <a href="#" onclick="switchTab('pickles')">Pickles</a>
+            <a href="#" onclick="switchTab('podis')">Podis</a>
+            <a href="#" onclick="switchTab('sweets')">Sweets</a>
+            <a href="#" onclick="switchTab('snacks')">Snacks</a>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-icon" onclick="toggleSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="nav-icon" onclick="switchTab('wishlist')">
+                <i class="fa-solid fa-heart"></i><span class="badge" id="wishlist-count">0</span>
+            </button>
+            <button class="nav-icon" onclick="switchTab('cart')">
+                <i class="fa-solid fa-cart-shopping"></i><span class="badge" id="cart-count">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <div id="search-bar" class="search-container hidden">
+        <input type="text" id="search-input" placeholder="Search for items..." oninput="handleSearch()">
+    </div>
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span><i class="fa-solid fa-leaf"></i> No Added Preservatives</span>
+            <span><i class="fa-solid fa-flask-vial"></i> No Chemicals</span>
+            <span><i class="fa-solid fa-droplet-slash"></i> No Added Colors</span>
+            <span><i class="fa-solid fa-ban"></i> No Palm Oil</span>
+        </div>
+    </div>
+
+    <main class="section">
+
+        <div id="view-home">
+            <h2 class="section-title">Shop Our Home Made Categories</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="switchTab('pickles')">
+                    <div class="image-placeholder"><span>[Upload Pickle Image]</span></div>
+                    <h3>Pickles</h3>
+                </div>
+                <div class="category-card" onclick="switchTab('podis')">
+                    <div class="image-placeholder"><span>[Upload Podis Image]</span></div>
+                    <h3>Podis</h3>
+                </div>
+                <div class="category-card" onclick="switchTab('sweets')">
+                    <div class="image-placeholder"><span>[Upload Sweets Image]</span></div>
+                    <h3>Sweets</h3>
+                </div>
+                <div class="category-card" onclick="switchTab('snacks')">
+                    <div class="image-placeholder"><span>[Upload Snacks Image]</span></div>
+                    <h3>Snacks</h3>
+                </div>
+            </div>
+
+            <div class="about-box" style="margin-top: 35px;">
+                <h3 style="margin-bottom: 10px; color: var(--primary);">About Us</h3>
+                <p style="font-size: 0.9rem; color: #555;">Welcome to Ruchi Tarangam! We bring you the true traditional waves of flavors right from our authentic home kitchen. Prepared cleanly without chemicals, artificial coloring, or palm oils, our signature collection of pickles, handcrafted spices, and native snacks guarantees premium homely freshness in every bite.</p>
+            </div>
+        </div>
+
+        <div id="view-products" class="hidden">
+            <h2 id="product-page-title" class="section-title">Products</h2>
+            
+            <div id="pickle-toggles" class="sub-toggle-container hidden">
+                <button id="btn-veg" class="btn-toggle active" onclick="filterPickles('veg')">Veg Pickles</button>
+                <button id="btn-nonveg" class="btn-toggle" onclick="filterPickles('nonveg')">Non-Veg Pickles</button>
+            </div>
+
+            <div class="product-grid" id="product-list-target"></div>
+        </div>
+
+        <div id="view-wishlist" class="hidden">
+            <h2 class="section-title">My Wishlist</h2>
+            <div class="product-grid" id="wishlist-target"></div>
+        </div>
+
+        <div id="view-cart" class="hidden">
+            <h2 class="section-title">Your Cart</h2>
+            <div id="cart-items-list"></div>
+            <h3 style="text-align: right; margin: 15px 0;" id="cart-grand-total">Grand Total: ₹0</h3>
+
+            <div id="checkout-form-container" class="hidden" style="background: white; padding: 20px; border-radius:12px; box-shadow: var(--shadow); margin-top:20px;">
+                <h3 style="margin-bottom:15px; border-bottom: 1px solid #eee; padding-bottom:5px;">Delivery Details</h3>
+                <form id="shipping-form" onsubmit="handleCheckout(event)">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" id="cust-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Country *</label>
+                        <input type="text" id="cust-country" value="India" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>State *</label>
+                        <select id="cust-state" required>
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Other">Other State</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Address Line *</label>
+                        <input type="text" id="cust-address" required placeholder="House No, Street Area">
+                    </div>
+                    <div class="form-group">
+                        <label>Apartment, suite, etc. (Optional)</label>
+                        <input type="text" id="cust-suite">
+                    </div>
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" id="cust-city" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Pincode *</label>
+                        <input type="tel" id="cust-pincode" pattern="[0-9]{6}" required placeholder="6-digit PIN">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="cust-phone" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
+                    </div>
+                    <button type="submit" class="btn-add-cart" style="background: #25d366; font-size:1rem; padding:12px; margin-top:10px;">
+                        <i class="fa-brands fa-whatsapp"></i> Place Order via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div style="margin-bottom: 15px;">
+            <h4>Trade Name: Ruchi Tarangam</h4>
+            <p>Phone: 9533338836</p>
+            <p>Email: ruchitarangam.official@gmail.com</p>
+            <p style="padding: 0 20px; font-size: 0.8rem; margin-top: 5px;">
+                Address: Plot no:373, Lakshmi Sai meadows colony, Road no:7, Beeramguda, Sangareddy district, Telangana, 502032
+            </p>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
+        <p>Follow Us on Instagram</p>
+        <a href="https://www.instagram.com/ruchitarangam?igsh=Z3Y2cnQ2anNtbmt1&utm_-source=qr" target="_blank" class="social-link">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </footer>
+
+    <script>
+        // Central Inventory & Custom Rates
+        const database = {
+            veg: [
+                { id: "v1", name: "Tomato", prices: [150, 300, 500] },
+                { id: "v2", name: "Usirikaya", prices: [150, 300, 500] },
+                { id: "v3", name: "Kakarkaya", prices: [150, 300, 500] },
+                { id: "v4", name: "Pandumirchi", prices: [150, 300, 500] },
+                { id: "v5", name: "Nimakaya", prices: [150, 300, 500] },
+                { id: "v6", name: "Allam", prices: [150, 300, 500] },
+                { id: "v7", name: "Gongura", prices: [150, 300, 500] },
+                { id: "v8", name: "Cauliflower Avakaya", prices: [150, 300, 500] },
+                { id: "v9", name: "Vankay Avakaya", prices: [150, 300, 500] }
+            ],
+            nonveg: [
+                { id: "nv1", name: "Bhimavaram spl Royala Avakaya", prices: [425, 850, 1700] },
+                { id: "nv2", name: "Boneless Chicken pickle", prices: [375, 750, 1500] },
+                { id: "nv3", name: "Chicken pickle with bone", prices: [325, 650, 1300] },
+                { id: "nv4", name: "Mutton pickle with bone", prices: [400, 800, 1600] },
+                { id: "nv5", name: "Mutton pickle with boneless", prices: [500, 1000, 2000] },
+                { id: "nv6", name: "Gongura Boneless chicken pickle", prices: [400, 800, 1600] }
+            ],
+            podis: [
+                { id: "p1", name: "Karam podi", prices: [230, 460, 920] },
+                { id: "p2", name: "Karivepaku podi", prices: [230, 460, 920] },
+                { id: "p3", name: "Palli karampodi", prices: [230, 460, 920] },
+                { id: "p4", name: "Nuvvulu Karampodi", prices: [230, 460, 920] },
+                { id: "p5", name: "Kandi karampodi", prices: [230, 460, 920] },
+                { id: "p6", name: "Avisaginjalu podi", prices: [230, 460, 920] },
+                { id: "p7", name: "Homemade Garam masala podi", prices: [250, 500, 1000] }
+            ],
+            sweets: [
+                { id: "sw1", name: "Bellam Gavvalu", prices: [150, 300, 600] },
+                { id: "sw2", name: "Ghee Nuvvulu Ariselu", prices: [200, 400, 800] },
+                { id: "sw3", name: "Kajjikayalu", prices: [180, 360, 720] },
+                { id: "sw4", name: "Paakundalu", prices: [180, 360, 720] },
+                { id: "sw5", name: "Bellam Chalividi", prices: [180, 360, 720] },
+                { id: "sw6", name: "Bellam Nuvvulu undalu", prices: [180, 360, 720] },
+                { id: "sw7", name: "Palli undalu", prices: [180, 360, 720] },
+                { id: "sw8", name: "Bellam Gorimitilu", prices: [160, 320, 640] },
+                { id: "sw9", name: "Nethi Ravva laddu", prices: [160, 320, 640] },
+                { id: "sw10", name: "Kobbari undalu", prices: [180, 360, 720] },
+                { id: "sw11", name: "Sweet Maida biscuits", prices: [160, 320, 640] },
+                { id: "sw12", name: "Nethi Poornam Bobatlu", prices: [210, 420, 840] },
+                { id: "sw13", name: "Nethi sunnundalu", prices: [190, 380, 760] },
+                { id: "sw14", name: "Dryfruits Laddu", prices: [320, 640, 1280] },
+                { id: "sw15", name: "Kaju pakam", prices: [390, 790, 1580] }
+            ],
+            snacks: [
+                { id: "sn1", name: "Corn flakes mixture", prices: [160, 320, 640] },
+                { id: "sn2", name: "Andhra mixture", prices: [160, 320, 640] },
+                { id: "sn3", name: "Atukulu mixture", prices: [160, 320, 640] },
+                { id: "sn4", name: "Sanna karpusa", prices: [160, 320, 640] },
+                { id: "sn5", name: "Karam gavvalu", prices: [160, 320, 640] },
+                { id: "sn6", name: "Aaku pakodi", prices: [160, 320, 640] },
+                { id: "sn7", name: "Masala Kaju", prices: [380, 760, 1520] },
+                { id: "sn8", name: "Janthikalu", prices: [160, 320, 640] },
+                { id: "sn9", name: "Chekkalu", prices: [160, 320, 640] }
+            ]
+        };
+
+        let cart = [];
+        let wishlist = [];
+        let currentCategory = 'veg'; 
+
+        const sizeLabels = ["250gm", "500gm", "1Kg"];
+
+        function switchTab(target) {
+            document.querySelectorAll('main > div').forEach(el => el.classList.add('hidden'));
+            document.getElementById('pickle-toggles').classList.add('hidden');
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+            if (target === 'home') {
+                document.getElementById('view-home').classList.remove('hidden');
+                document.querySelector('.nav-links a:nth-child(1)').classList.add('active');
+            } else if (['pickles', 'podis', 'sweets', 'snacks'].includes(target)) {
+                document.getElementById('view-products').classList.remove('hidden');
+                let displayTitle = target.charAt(0).toUpperCase() + target.slice(1);
+                document.getElementById('product-page-title').innerText = displayTitle;
+                
+                if(target === 'pickles') {
+                    document.getElementById('pickle-toggles').classList.remove('hidden');
+                    renderProductGrid(currentCategory);
+                    document.querySelector('.nav-links a:nth-child(2)').classList.add('active');
+                } else {
+                    renderProductGrid(target);
+                    // Match category links
+                    if(target === 'podis') document.querySelector('.nav-links a:nth-child(3)').classList.add('active');
+                    if(target === 'sweets') document.querySelector('.nav-links a:nth-child(4)').classList.add('active');
+                    if(target === 'snacks') document.querySelector('.nav-links a:nth-child(5)').classList.add('active');
+                }
+            } else if (target === 'wishlist') {
+                document.getElementById('view-wishlist').classList.remove('hidden');
+                renderWishlist();
+            } else if (target === 'cart') {
+                document.getElementById('view-cart').classList.remove('hidden');
+                renderCart();
+            }
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function filterPickles(subCat) {
+            currentCategory = subCat;
+            document.getElementById('btn-veg').classList.toggle('active', subCat === 'veg');
+            document.getElementById('btn-nonveg').classList.toggle('active', subCat === 'nonveg');
+            renderProductGrid(subCat);
+        }
+
+        function toggleSearch() {
+            document.getElementById('search-bar').classList.toggle('hidden');
+        }
+
+        function handleSearch() {
+            let query = document.getElementById('search-input').value.toLowerCase();
+            if(!query) return;
+
+            document.getElementById('view-products').classList.remove('hidden');
+            document.getElementById('view-home').classList.add('hidden');
+            document.getElementById('view-wishlist').classList.add('hidden');
+            document.getElementById('view-cart').classList.add('hidden');
+            document.getElementById('product-page-title').innerText = "Search Results";
+            document.getElementById('pickle-toggles').classList.add('hidden');
+
+            let matches = [];
+            Object.keys(database).forEach(cat => {
+                database[cat].forEach(item => {
+                    if(item.name.toLowerCase().includes(query)) {
+                        matches.push({ ...item, category: cat });
+                    }
+                });
+            });
+            renderCustomArray(matches);
+        }
+
+        function calculateCardPrice(id, catKey, baseIndex) {
+            let item = database[catKey].find(i => i.id === id);
+            let selectElement = document.getElementById(`size-${id}`);
+            let qtyElement = document.getElementById(`qty-${id}`);
+            let priceContainer = document.getElementById(`price-box-${id}`);
+
+            if(!selectElement || !qtyElement) return;
+
+            let sizeIdx = selectElement.value;
+            if(sizeIdx === "") {
+                priceContainer.innerText = "Select size to view price";
+                return;
+            }
+
+            let qty = parseInt(qtyElement.value) || 1;
+            let total = item.prices[sizeIdx] * qty;
+            priceContainer.innerText = "₹" + total;
+        }
+
+        function renderProductGrid(categoryKey) {
+            renderCustomArray(database[categoryKey], categoryKey);
+        }
+
+        function renderCustomArray(array, fallbackCat = '') {
+            let container = document.getElementById('product-list-target');
+            container.innerHTML = '';
+
+            if(array.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:20px;">No items found.</p>';
+                return;
+            }
+
+            array.forEach(item => {
+                let catKey = fallbackCat || item.category;
+                let isFav = wishlist.some(w => w.id === item.id);
+
+                let card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-header">
+                        <span class="product-title">${item.name}</span>
+                        <button class="wishlist-btn ${isFav ? 'active' : ''}" onclick="toggleWishlist('${item.id}', '${catKey}')">
+                            <i class="fa-${isFav ? 'solid' : 'regular'} fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="image-placeholder" style="height:110px; margin-bottom:10px;">
+                        <span>[Upload Picture]</span>
+                    </div>
+                    <select id="size-${item.id}" onchange="calculateCardPrice('${item.id}', '${catKey}')">
+                        <option value="">Choose Size</option>
+                        <option value="0">250gm</option>
+                        <option value="1">500gm</option>
+                        <option value="2">1Kg</option>
+                    </select>
+                    <input type="number" id="qty-${item.id}" min="1" value="1" oninput="calculateCardPrice('${item.id}', '${catKey}')" placeholder="Qty">
+                    <div class="price-display" id="price-box-${item.id}">Select size to view price</div>
+                    <button class="btn-add-cart" onclick="addToCart('${item.id}', '${catKey}')">Add to Cart</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function toggleWishlist(id, catKey) {
+            let idx = wishlist.findIndex(w => w.id === id);
+            if(idx > -1) {
+                wishlist.splice(idx, 1);
+            } else {
+                let prod = database[catKey].find(i => i.id === id);
+                wishlist.push({...prod, catKey});
+            }
+            document.getElementById('wishlist-count').innerText = wishlist.length;
+            
+            // Re-render current view context to maintain live feedback
+            let activeTitle = document.getElementById('product-page-title').innerText;
+            if(!document.getElementById('view-products').classList.contains('hidden') && activeTitle !== "Search Results") {
+                renderProductGrid(catKey);
+            } else if (activeTitle === "Search Results") {
+                handleSearch();
+            } else {
+                renderWishlist();
+            }
+        }
+
+        function renderWishlist() {
+            let container = document.getElementById('wishlist-target');
+            container.innerHTML = '';
+            if(wishlist.length === 0) {
+                container.innerHTML = '<p style="grid-column:1/-1; text-align:center;">Your wishlist is empty.</p>';
+                return;
+            }
+            wishlist.forEach(item => {
+                let card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-header">
+                        <span class="product-title">${item.name}</span>
+                        <button class="wishlist-btn active" onclick="toggleWishlist('${item.id}', '${item.catKey}')">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="image-placeholder" style="height:110px; margin-bottom:10px;"><span>[Upload Picture]</span></div>
+                    <select id="size-${item.id}" onchange="calculateCardPrice('${item.id}', '${item.catKey}')">
+                        <option value="">Choose Size</option>
+                        <option value="0">250gm</option>
+                        <option value="1">500gm</option>
+                        <option value="2">1Kg</option>
+                    </select>
+                    <input type="number" id="qty-${item.id}" min="1" value="1" oninput="calculateCardPrice('${item.id}', '${item.catKey}')">
+                    <div class="price-display" id="price-box-${item.id}">Select size to view price</div>
+                    <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.catKey}')">Add to Cart</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function addToCart(id, catKey) {
+            let sizeSel = document.getElementById(`size-${id}`).value;
+            let qtyVal = parseInt(document.getElementById(`qty-${id}`).value);
+
+            if(sizeSel === "") {
+                alert("Please select a weight parameter size before adding!");
+                return;
+            }
+            if(!qtyVal || qtyVal < 1) {
+                alert("Please select a valid structural quantity.");
+                return;
+            }
+
+            let prod = database[catKey].find(i => i.id === id);
+            let computedPrice = prod.prices[sizeSel] * qtyVal;
+
+            let existingIndex = cart.findIndex(c => c.id === id && c.sizeIndex === sizeSel);
+            if(existingIndex > -1) {
+                cart[existingIndex].qty += qtyVal;
+                cart[existingIndex].totalCost += computedPrice;
+            } else {
+                cart.push({
+                    id: prod.id,
+                    name: prod.name,
+                    sizeLabel: sizeLabels[sizeSel],
+                    sizeIndex: sizeSel,
+                    qty: qtyVal,
+                    unitPrice: prod.prices[sizeSel],
+                    totalCost: computedPrice
+                });
+            }
+            
+            document.getElementById('cart-count').innerText = cart.length;
+            alert(`${prod.name} (${sizeLabels[sizeSel]}) added to Cart successfully!`);
+        }
+
+        function renderCart() {
+            let target = document.getElementById('cart-items-list');
+            let formContainer = document.getElementById('checkout-form-container');
+            target.innerHTML = '';
+            
+            if(cart.length === 0) {
+                target.innerHTML = '<p style="text-align:center; padding:20px;">Your cart is empty.</p>';
+                document.getElementById('cart-grand-total').innerText = "Grand Total: ₹0";
+                formContainer.classList.add('hidden');
+                return;
+            }
+
+            formContainer.classList.remove('hidden');
+            let grandTotal = 0;
+
+            cart.forEach((item, index) => {
+                grandTotal += item.totalCost;
+                let div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div>
+                        <strong style="font-size:0.95rem;">${item.name}</strong><br>
+                        <span style="font-size:0.85rem; color:#666;">Size: ${item.sizeLabel} | Qty: ${item.qty}</span>
+                    </div>
+                    <div style="text-align:right; display:flex; align-items:center; gap:12px;">
+                        <span style="font-weight:600; color:var(--secondary)">₹${item.totalCost}</span>
+                        <i class="fa-solid fa-trash-can" style="color:var(--primary); cursor:pointer;" onclick="removeFromCart(${index})"></i>
+                    </div>
+                `;
+                target.appendChild(div);
+            });
+
+            document.getElementById('cart-grand-total').innerText = "Grand Total: ₹" + grandTotal;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            document.getElementById('cart-count').innerText = cart.length;
+            renderCart();
+        }
+
+        function handleCheckout(e) {
+            e.preventDefault();
+            
+            if(cart.length === 0) return;
+
+            let name = document.getElementById('cust-name').value;
+            let country = document.getElementById('cust-country').value;
+            let state = document.getElementById('cust-state').value;
+            let address = document.getElementById('cust-address').value;
+            let suite = document.getElementById('cust-suite').value;
+            let city = document.getElementById('cust-city').value;
+            let pincode = document.getElementById('cust-pincode').value;
+            let phone = document.getElementById('cust-phone').value;
+
+            // Generate WhatsApp Structured Order Text
+            let message = `*Ruchi Tarangam New Order*\n`;
+            message += `=========================\n\n`;
+            message += `*Items Ordered:*\n`;
+            
+            let grandTotal = 0;
+            cart.forEach(item => {
+                message += `- ${item.name} (${item.sizeLabel}) x ${item.qty} = ₹${item.totalCost}\n`;
+                grandTotal += item.totalCost;
+            });
+            
+            message += `\n*Grand Total:* ₹${grandTotal}\n\n`;
+            message += `*Delivery Details:*\n`;
+            message += `- Name: ${name}\n`;
+            message += `- Phone: ${phone}\n`;
+            message += `- Address: ${address}${suite ? ', ' + suite : ''}\n`;
+            message += `- City: ${city}\n`;
+            message += `- State: ${state}\n`;
+            message += `- Pincode: ${pincode}\n`;
+            message += `- Country: ${country}\n`;
+
+            let whatsappNumber = "9533338836";
+            let encodedUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+            
+            // Clean cart storage & dispatch
+            cart = [];
+            document.getElementById('cart-count').innerText = "0";
+            document.getElementById('shipping-form').reset();
+            switchTab('home');
+            
+            window.open(encodedUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
