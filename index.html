@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruchi Tarangam | Waves of Flavors</title>
+    <title>Ruchi Tarangam - Waves of Flavors</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #d32f2f;
-            --secondary: #f57c00;
-            --dark: #212121;
-            --light: #fff8f5;
-            --white: #ffffff;
-            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --primary-color: #8B0000;
+            --accent-color: #FF8C00;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #fdfaf6;
+            --card-bg: #ffffff;
         }
 
         * {
@@ -24,153 +24,154 @@
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
-            padding-bottom: 60px;
         }
 
-        /* Utility classes */
-        .hidden { display: none !important; }
-
-        /* Header & Brand Space */
+        /* --- HEADER & NAVIGATION --- */
         header {
-            background: var(--white);
-            text-align: center;
-            padding: 20px 15px 10px;
-            box-shadow: var(--shadow);
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 20px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-wwidth: 1200px;
+            margin: 0 auto;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
         }
 
         .logo-container {
-            max-width: 220px;
-            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-placeholder {
+            width: 90px;
+            height: 90px;
             border: 2px dashed #ccc;
-            margin: 0 auto 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: #fafafa;
+            color: #666;
+            font-size: 11px;
+            margin-bottom: 4px;
             border-radius: 8px;
-            font-size: 0.9rem;
-            color: #777;
-            position: relative;
-            overflow: hidden;
         }
 
-        .logo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            position: absolute;
+        .logo-container h1 {
+            font-size: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+            line-height: 1.1;
         }
 
-        .tagline {
-            font-size: 0.9rem;
-            color: var(--secondary);
+        .logo-container span {
+            font-size: 11px;
+            color: var(--accent-color);
             font-style: italic;
-            font-weight: 600;
         }
 
-        /* Persistent Navigation Bar */
-        .navbar {
-            background: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 12px 15px;
+        .search-bar {
+            position: relative;
+            width: 40%;
+            max-width: 400px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 35px 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-bar i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .header-actions {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 20px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--primary-color);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .action-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        /* Centered Main Menu */
+        nav {
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
         }
 
         .nav-links {
             display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding-right: 10px;
-            -webkit-overflow-scrolling: touch;
+            list-style: none;
+            gap: 25px;
         }
-
-        .nav-links::-webkit-scrollbar { display: none; }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--text-dark);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 15px;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            color: var(--primary);
+            color: var(--primary-color);
         }
 
-        .nav-actions {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            background: var(--white);
-            padding-left: 10px;
-        }
-
-        .nav-icon {
-            font-size: 1.25rem;
-            color: var(--dark);
-            cursor: pointer;
-            position: relative;
-            background: none;
-            border: none;
-        }
-
-        .badge {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background: var(--primary);
-            color: white;
-            font-size: 0.7rem;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        /* Search Bar */
-        .search-container {
-            padding: 10px 15px;
-            background: #f0f0f0;
-            display: flex;
-            gap: 8px;
-        }
-
-        .search-container input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 0.95rem;
-        }
-
-        /* Announcement Scrolling Text */
+        /* --- MARQUEE TICKER --- */
         .ticker-wrap {
-            background: var(--primary);
-            color: var(--white);
-            padding: 8px 0;
+            background-color: var(--primary-color);
+            color: white;
             overflow: hidden;
+            white-space: nowrap;
+            padding: 6px 0;
             font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            font-size: 14px;
         }
 
         .ticker {
             display: inline-block;
-            white-space: nowrap;
-            animation: marquee 20s linear infinite;
+            animation: marquee 25s linear infinite;
             padding-left: 100%;
         }
 
@@ -180,396 +181,424 @@
         }
 
         .ticker span {
-            margin-right: 50px;
+            display: inline-block;
+            padding: 0 25px;
         }
 
-        /* Section Styling */
-        .section {
-            padding: 25px 15px;
+        /* --- HOME PAGE SECTIONS --- */
+        .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 20px auto;
+            padding: 0 15px;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            color: var(--dark);
-            position: relative;
+            margin: 30px 0 15px;
+            font-size: 24px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--secondary);
-            margin: 8px auto 0;
-            border-radius: 2px;
+        /* About Us */
+        .about-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto 15px;
+            color: #555;
         }
 
-        /* Sub-category Filter Toggles */
-        .sub-toggle-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .btn-toggle {
-            padding: 8px 20px;
-            border: 2px solid var(--primary);
-            background: transparent;
-            color: var(--primary);
-            font-weight: 600;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-toggle.active {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        /* Visual Grids */
+        /* Grid Category Cards */
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
+            margin-bottom: 4px;
         }
 
         .category-card {
-            background: var(--white);
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: var(--shadow);
             text-align: center;
             cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
             transition: transform 0.2s;
         }
 
-        .category-card:active {
-            transform: scale(0.97);
+        .category-card:hover {
+            transform: translateY(-4px);
         }
 
-        .image-placeholder {
+        /* Decreased Image Sizes for Grid and items */
+        .category-card img, .item-img-placeholder {
             width: 100%;
             height: 140px;
-            background: #eaeaea;
-            border-bottom: 1px solid #ddd;
+            object-fit: cover;
+            background-color: #eaeaea;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #888;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 12px;
+            border-bottom: 1px solid #eee;
         }
 
         .category-card h3 {
-            padding: 12px 5px;
-            font-size: 1rem;
-            color: var(--dark);
+            padding: 10px 5px;
+            font-size: 16px;
+            color: var(--text-dark);
         }
 
-        /* Product Cards & Overlap Fixes */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        /* --- SUB-NAVIGATION & TOGGLES (Pickles) --- */
+        .sub-toggle-container {
+            display: flex;
+            justify-content: center;
             gap: 15px;
+            margin-bottom: 20px;
         }
 
-        @media (min-width: 768px) {
-            .product-grid { grid-template-columns: repeat(4, 1fr); }
+        .toggle-btn {
+            padding: 8px 20px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .toggle-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* --- PRODUCT ITEMS LAYOUT --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
         }
 
         .product-card {
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #eee;
             padding: 12px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
         }
 
-        /* Dynamic Title Spacing Frame to block wrapping overlap with Actions */
+        /* Fixed structural grid for header item layout to stop overlapping text and wishlist icons */
         .product-header {
-            padding-right: 35px; 
-            min-height: 48px;
-            margin-bottom: 8px;
-            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 30px;
+            align-items: start;
+            gap: 4px;
+            margin-top: 8px;
         }
 
         .product-title {
-            font-size: 0.95rem;
+            font-size: 14px;
             font-weight: 600;
-            color: var(--dark);
-            word-wrap: break-word;
-            line-height: 1.3;
+            color: var(--text-dark);
+            word-break: break-word;
         }
 
         .wishlist-btn {
-            position: absolute;
-            top: 0;
-            right: 0;
             background: none;
             border: none;
-            font-size: 1.2rem;
+            font-size: 18px;
             color: #ccc;
             cursor: pointer;
-            z-index: 5;
+            text-align: right;
+            padding-top: 2px;
         }
 
         .wishlist-btn.active {
-            color: #e53935;
+            color: #e74c3c;
         }
 
-        .product-card select, .product-card input {
+        .product-controls {
+            margin-top: 10px;
+        }
+
+        .product-controls select {
             width: 100%;
-            padding: 8px;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+            background: #fff;
             margin-bottom: 8px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            background-color: #fafafa;
         }
 
         .price-display {
+            font-size: 15px;
             font-weight: 700;
-            color: var(--secondary);
-            font-size: 1.05rem;
-            margin: 4px 0 10px;
+            color: var(--primary-color);
+            margin: 4px 0;
             min-height: 24px;
         }
 
-        .btn-add-cart {
-            width: 100%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
+        .qty-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
         }
 
-        /* Cart & Checkout Page layout */
-        .cart-item {
+        .qty-btn {
+            width: 26px;
+            height: 26px;
+            border: 1px solid #ccc;
+            background: #eee;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .qty-val {
+            font-weight: 600;
+            width: 25px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .add-cart-btn {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        /* --- CART, WISHLIST, ADDRESS VIEWS --- */
+        .view-panel {
             background: white;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            box-shadow: var(--shadow);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .panel-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
         }
 
+        /* Form styling */
         .form-group {
             margin-bottom: 12px;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 13px;
             font-weight: 600;
             margin-bottom: 4px;
         }
 
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
             border-radius: 6px;
-            font-size: 0.95rem;
-        }
-
-        /* About Us Frame */
-        .about-box {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+            cursor: pointer;
             margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
+        /* --- FOOTER --- */
         footer {
-            background: #212121;
-            color: #aaa;
-            padding: 30px 15px;
-            text-align: center;
-            font-size: 0.85rem;
+            background-color: #222;
+            color: #fff;
+            padding: 30px 20px;
+            margin-top: 50px;
+            font-size: 13px;
         }
 
-        footer a { color: var(--secondary); text-decoration: none; }
-        .social-link { font-size: 1.8rem; color: #e1306c; margin-top: 10px; display: inline-block; }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-link {
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- RESPONSIVE / MOBILE OPTIMIZATIONS --- */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .search-bar {
+                width: 100%;
+                order: 3;
+            }
+            .nav-links {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-links a {
+                font-size: 13px;
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .category-card img, .item-img-placeholder {
+                height: 110px;
+            }
+            .product-title {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container">
-            <span>[Upload Logo Space]</span>
+        <div class="header-top">
+            <div class="logo-container">
+                <div class="logo-placeholder">
+                    [Place Logo Here]
+                </div>
+                <h1>Ruchi Tarangam</h1>
+                <span>Waves of flavors</span>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search delicious homemade items..." oninput="handleSearch()">
+                <i class="fa fa-search"></i>
+            </div>
+
+            <div class="header-actions">
+                <button class="action-btn" onclick="showView('wishlist')" title="Wishlist">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="action-badge" id="wishlist-count">0</span>
+                </button>
+                <button class="action-btn" onclick="showView('cart')" title="Cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="action-badge" id="cart-count">0</span>
+                </button>
+            </div>
         </div>
-        <div class="tagline">Waves of Flavors</div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a id="nav-home" class="active" onclick="showView('home')">Home</a></li>
+                <li><a id="nav-pickles" onclick="showView('pickles')">Pickles</a></li>
+                <li><a id="nav-podis" onclick="showView('podis')">Podis</a></li>
+                <li><a id="nav-sweets" onclick="showView('sweets')">Sweets</a></li>
+                <li><a id="nav-snacks" onclick="showView('snacks')">Snacks</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <nav class="navbar">
-        <div class="nav-links">
-            <a href="#" class="active" onclick="switchTab('home')">Home</a>
-            <a href="#" onclick="switchTab('pickles')">Pickles</a>
-            <a href="#" onclick="switchTab('podis')">Podis</a>
-            <a href="#" onclick="switchTab('sweets')">Sweets</a>
-            <a href="#" onclick="switchTab('snacks')">Snacks</a>
-        </div>
-        <div class="nav-actions">
-            <button class="nav-icon" onclick="toggleSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <button class="nav-icon" onclick="switchTab('wishlist')">
-                <i class="fa-solid fa-heart"></i><span class="badge" id="wishlist-count">0</span>
-            </button>
-            <button class="nav-icon" onclick="switchTab('cart')">
-                <i class="fa-solid fa-cart-shopping"></i><span class="badge" id="cart-count">0</span>
-            </button>
-        </div>
-    </nav>
-
-    <div id="search-bar" class="search-container hidden">
-        <input type="text" id="search-input" placeholder="Search for items..." oninput="handleSearch()">
-    </div>
 
     <div class="ticker-wrap">
         <div class="ticker">
-            <span><i class="fa-solid fa-leaf"></i> No Added Preservatives</span>
-            <span><i class="fa-solid fa-flask-vial"></i> No Chemicals</span>
-            <span><i class="fa-solid fa-droplet-slash"></i> No Added Colors</span>
-            <span><i class="fa-solid fa-ban"></i> No Palm Oil</span>
+            <span>🌱 No added preservatives</span> • 
+            <span>🚫 No chemicals</span> • 
+            <span>🎨 No added colors</span> • 
+            <span>🌴 No palm oil</span> •
+            <span>🌱 No added preservatives</span> • 
+            <span>🚫 No chemicals</span> • 
+            <span>🎨 No added colors</span> • 
+            <span>🌴 No palm oil</span>
         </div>
     </div>
 
-    <main class="section">
-
-        <div id="view-home">
-            <h2 class="section-title">Shop Our Home Made Categories</h2>
-            <div class="category-grid">
-                <div class="category-card" onclick="switchTab('pickles')">
-                    <div class="image-placeholder"><span>[Upload Pickle Image]</span></div>
-                    <h3>Pickles</h3>
-                </div>
-                <div class="category-card" onclick="switchTab('podis')">
-                    <div class="image-placeholder"><span>[Upload Podis Image]</span></div>
-                    <h3>Podis</h3>
-                </div>
-                <div class="category-card" onclick="switchTab('sweets')">
-                    <div class="image-placeholder"><span>[Upload Sweets Image]</span></div>
-                    <h3>Sweets</h3>
-                </div>
-                <div class="category-card" onclick="switchTab('snacks')">
-                    <div class="image-placeholder"><span>[Upload Snacks Image]</span></div>
-                    <h3>Snacks</h3>
-                </div>
-            </div>
-
-            <div class="about-box" style="margin-top: 35px;">
-                <h3 style="margin-bottom: 10px; color: var(--primary);">About Us</h3>
-                <p style="font-size: 0.9rem; color: #555;">Welcome to Ruchi Tarangam! We bring you the true traditional waves of flavors right from our authentic home kitchen. Prepared cleanly without chemicals, artificial coloring, or palm oils, our signature collection of pickles, handcrafted spices, and native snacks guarantees premium homely freshness in every bite.</p>
-            </div>
-        </div>
-
-        <div id="view-products" class="hidden">
-            <h2 id="product-page-title" class="section-title">Products</h2>
-            
-            <div id="pickle-toggles" class="sub-toggle-container hidden">
-                <button id="btn-veg" class="btn-toggle active" onclick="filterPickles('veg')">Veg Pickles</button>
-                <button id="btn-nonveg" class="btn-toggle" onclick="filterPickles('nonveg')">Non-Veg Pickles</button>
-            </div>
-
-            <div class="product-grid" id="product-list-target"></div>
-        </div>
-
-        <div id="view-wishlist" class="hidden">
-            <h2 class="section-title">My Wishlist</h2>
-            <div class="product-grid" id="wishlist-target"></div>
-        </div>
-
-        <div id="view-cart" class="hidden">
-            <h2 class="section-title">Your Cart</h2>
-            <div id="cart-items-list"></div>
-            <h3 style="text-align: right; margin: 15px 0;" id="cart-grand-total">Grand Total: ₹0</h3>
-
-            <div id="checkout-form-container" class="hidden" style="background: white; padding: 20px; border-radius:12px; box-shadow: var(--shadow); margin-top:20px;">
-                <h3 style="margin-bottom:15px; border-bottom: 1px solid #eee; padding-bottom:5px;">Delivery Details</h3>
-                <form id="shipping-form" onsubmit="handleCheckout(event)">
-                    <div class="form-group">
-                        <label>Name *</label>
-                        <input type="text" id="cust-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Country *</label>
-                        <input type="text" id="cust-country" value="India" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label>State *</label>
-                        <select id="cust-state" required>
-                            <option value="">Select State</option>
-                            <option value="Andhra Pradesh">Andhra Pradesh</option>
-                            <option value="Telangana">Telangana</option>
-                            <option value="Karnataka">Karnataka</option>
-                            <option value="Tamil Nadu">Tamil Nadu</option>
-                            <option value="Maharashtra">Maharashtra</option>
-                            <option value="Other">Other State</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Address Line *</label>
-                        <input type="text" id="cust-address" required placeholder="House No, Street Area">
-                    </div>
-                    <div class="form-group">
-                        <label>Apartment, suite, etc. (Optional)</label>
-                        <input type="text" id="cust-suite">
-                    </div>
-                    <div class="form-group">
-                        <label>City *</label>
-                        <input type="text" id="cust-city" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Pincode *</label>
-                        <input type="tel" id="cust-pincode" pattern="[0-9]{6}" required placeholder="6-digit PIN">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number *</label>
-                        <input type="tel" id="cust-phone" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
-                    </div>
-                    <button type="submit" class="btn-add-cart" style="background: #25d366; font-size:1rem; padding:12px; margin-top:10px;">
-                        <i class="fa-brands fa-whatsapp"></i> Place Order via WhatsApp
-                    </button>
-                </form>
-            </div>
-        </div>
-
-    </main>
+    <main class="container" id="main-content">
+        </main>
 
     <footer>
-        <div style="margin-bottom: 15px;">
-            <h4>Trade Name: Ruchi Tarangam</h4>
-            <p>Phone: 9533338836</p>
-            <p>Email: ruchitarangam.official@gmail.com</p>
-            <p style="padding: 0 20px; font-size: 0.8rem; margin-top: 5px;">
-                Address: Plot no:373, Lakshmi Sai meadows colony, Road no:7, Beeramguda, Sangareddy district, Telangana, 502032
-            </p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Ruchi Tarangam</h4>
+                <p>Authentic, homemade delicacies made with premium local ingredients and traditional recipes. Experience pure waves of true regional flavor.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Details</h4>
+                <p><b>Phone:</b> 9533338836</p>
+                <p><b>Email:</b> ruchitarangam.official@gmail.com</p>
+                <p><b>Address:</b> Plot no:373, Lakshmi Sai meadows colony, Road no:7, Beeramguda, Sangareddy district, Telangana, 502032</p>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <a href="https://www.instagram.com/ruchitarangam?igsh=Z3Y2cnQ2anNtbmt1&utm_-source=qr" target="_blank" class="social-link">
+                    <i class="fa-brands fa-instagram"></i> Instagram Page
+                </a>
+            </div>
         </div>
-        <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
-        <p>Follow Us on Instagram</p>
-        <a href="https://www.instagram.com/ruchitarangam?igsh=Z3Y2cnQ2anNtbmt1&utm_-source=qr" target="_blank" class="social-link">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
     </footer>
 
     <script>
-        // Central Inventory & Custom Rates
-        const database = {
+        // Central Store Data Module containing updated pricing structures
+        const STORE_DATA = {
             veg: [
                 { id: "v1", name: "Tomato", prices: [150, 300, 500] },
                 { id: "v2", name: "Usirikaya", prices: [150, 300, 500] },
@@ -628,316 +657,415 @@
             ]
         };
 
+        const SIZE_LABELS = ["250gm", "500gm", "1Kg"];
+        
+        // Cart and Wishlist Application State Memory Objects
         let cart = [];
         let wishlist = [];
-        let currentCategory = 'veg'; 
+        let currentPickleTab = 'veg'; 
 
-        const sizeLabels = ["250gm", "500gm", "1Kg"];
+        // Initialization lifecycle
+        window.onload = function() {
+            showView('home');
+            updateCounters();
+        };
 
-        function switchTab(target) {
-            document.querySelectorAll('main > div').forEach(el => el.classList.add('hidden'));
-            document.getElementById('pickle-toggles').classList.add('hidden');
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        function updateCounters() {
+            document.getElementById('cart-count').innerText = cart.length;
+            document.getElementById('wishlist-count').innerText = wishlist.length;
+        }
 
-            if (target === 'home') {
-                document.getElementById('view-home').classList.remove('hidden');
-                document.querySelector('.nav-links a:nth-child(1)').classList.add('active');
-            } else if (['pickles', 'podis', 'sweets', 'snacks'].includes(target)) {
-                document.getElementById('view-products').classList.remove('hidden');
-                let displayTitle = target.charAt(0).toUpperCase() + target.slice(1);
-                document.getElementById('product-page-title').innerText = displayTitle;
-                
-                if(target === 'pickles') {
-                    document.getElementById('pickle-toggles').classList.remove('hidden');
-                    renderProductGrid(currentCategory);
-                    document.querySelector('.nav-links a:nth-child(2)').classList.add('active');
-                } else {
-                    renderProductGrid(target);
-                    // Match category links
-                    if(target === 'podis') document.querySelector('.nav-links a:nth-child(3)').classList.add('active');
-                    if(target === 'sweets') document.querySelector('.nav-links a:nth-child(4)').classList.add('active');
-                    if(target === 'snacks') document.querySelector('.nav-links a:nth-child(5)').classList.add('active');
-                }
-            } else if (target === 'wishlist') {
-                document.getElementById('view-wishlist').classList.remove('hidden');
-                renderWishlist();
-            } else if (target === 'cart') {
-                document.getElementById('view-cart').classList.remove('hidden');
-                renderCart();
+        // View Routing Manager
+        function showView(viewName) {
+            const main = document.getElementById('main-content');
+            
+            // Manage Active Header Navigation Highlights
+            document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
+            const dynamicNavMap = { 'home': 'nav-home', 'pickles': 'nav-pickles', 'podis': 'nav-podis', 'sweets': 'nav-sweets', 'snacks': 'nav-snacks' };
+            if(dynamicNavMap[viewName]) {
+                document.getElementById(dynamicNavMap[viewName]).classList.add('active');
             }
-            window.scrollTo({top: 0, behavior: 'smooth'});
+
+            if (viewName === 'home') {
+                main.innerHTML = `
+                    <section class="about-section">
+                        <h2 style="color:var(--primary-color); margin-bottom:10px;">About Ruchi Tarangam</h2>
+                        <p>Welcome to Ruchi Tarangam, where we deliver true coastal and traditional culinary masterpieces directly to your dining table. Our products are traditionally prepared under high sanitary rules, avoiding synthetic agents to preserve true, uncompromised safety and deep heritage flavor.</p>
+                    </section>
+
+                    <h2 class="section-title">Shop Our Homemade Categories</h2>
+                    <div class="category-grid">
+                        <div class="category-card" onclick="showView('pickles')">
+                            <div class="item-img-placeholder">[Pickles Image]</div>
+                            <h3>Pickles</h3>
+                        </div>
+                        <div class="category-card" onclick="showView('podis')">
+                            <div class="item-img-placeholder">[Podis Image]</div>
+                            <h3>Podis</h3>
+                        </div>
+                        <div class="category-card" onclick="showView('sweets')">
+                            <div class="item-img-placeholder">[Sweets Image]</div>
+                            <h3>Sweets</h3>
+                        </div>
+                        <div class="category-card" onclick="showView('snacks')">
+                            <div class="item-img-placeholder">[Snacks Image]</div>
+                            <h3>Snacks</h3>
+                        </div>
+                    </div>
+                `;
+            } else if (viewName === 'pickles') {
+                renderPicklesView();
+            } else if (viewName === 'podis') {
+                renderProductView("Podis Menu", STORE_DATA.podis);
+            } else if (viewName === 'sweets') {
+                renderProductView("Sweets Menu", STORE_DATA.sweets);
+            } else if (viewName === 'snacks') {
+                renderProductView("Snacks Menu", STORE_DATA.snacks);
+            } else if (viewName === 'cart') {
+                renderCartView();
+            } else if (viewName === 'wishlist') {
+                renderWishlistView();
+            }
+            window.scrollTo(0,0);
         }
 
-        function filterPickles(subCat) {
-            currentCategory = subCat;
-            document.getElementById('btn-veg').classList.toggle('active', subCat === 'veg');
-            document.getElementById('btn-nonveg').classList.toggle('active', subCat === 'nonveg');
-            renderProductGrid(subCat);
+        // Specialized Render Configuration for multi-tiered Pickle View Tab selection
+        function renderPicklesView() {
+            const main = document.getElementById('main-content');
+            let itemsToRender = currentPickleTab === 'veg' ? STORE_DATA.veg : STORE_DATA.nonveg;
+            
+            let html = `
+                <h2 class="section-title">Pickles Menu</h2>
+                <div class="sub-toggle-container">
+                    <button class="toggle-btn ${currentPickleTab === 'veg' ? 'active' : ''}" onclick="togglePickleTab('veg')">Veg Pickles</button>
+                    <button class="toggle-btn ${currentPickleTab === 'nonveg' ? 'active' : ''}" onclick="togglePickleTab('nonveg')">Non-Veg Pickles</button>
+                </div>
+                <div class="products-grid">
+            `;
+            
+            html += generateProductCards(itemsToRender);
+            html += `</div>`;
+            main.innerHTML = html;
         }
 
-        function toggleSearch() {
-            document.getElementById('search-bar').classList.toggle('hidden');
+        function togglePickleTab(tab) {
+            currentPickleTab = tab;
+            renderPicklesView();
         }
 
+        // Standard Category Rendering engine
+        function renderProductView(title, dataset) {
+            const main = document.getElementById('main-content');
+            let html = `
+                <h2 class="section-title">${title}</h2>
+                <div class="products-grid">
+            `;
+            html += generateProductCards(dataset);
+            html += `</div>`;
+            main.innerHTML = html;
+        }
+
+        // HTML Component Template Generator engine for individual item blocks
+        function generateProductCards(dataset) {
+            let html = '';
+            dataset.forEach(item => {
+                const isWish = wishlist.some(w => w.id === item.id) ? 'active' : '';
+                html += `
+                    <div class="product-card" id="card-${item.id}">
+                        <div>
+                            <div class="item-img-placeholder">[Image Space]</div>
+                            <div class="product-header">
+                                <div class="product-title">${item.name}</div>
+                                <button class="wishlist-btn ${isWish}" onclick="toggleWishlist('${item.id}', '${item.name}')">
+                                    <i class="fa-solid fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-controls">
+                            <select id="size-${item.id}" onchange="updatePrice('${item.id}', ${JSON.stringify(item.prices)})">
+                                <option value="">Select Quantity</option>
+                                <option value="0">${SIZE_LABELS[0]}</option>
+                                <option value="1">${SIZE_LABELS[1]}</option>
+                                <option value="2">${SIZE_LABELS[2]}</option>
+                            </select>
+                            
+                            <div class="price-display" id="price-view-${item.id}">---</div>
+                            
+                            <div class="qty-container">
+                                <button class="qty-btn" onclick="adjustQty('${item.id}', -1, ${JSON.stringify(item.prices)})">-</button>
+                                <div class="qty-val" id="qty-${item.id}">1</div>
+                                <button class="qty-btn" onclick="adjustQty('${item.id}', 1, ${JSON.stringify(item.prices)})">+</button>
+                            </div>
+                            
+                            <button class="add-cart-btn" onclick="addToCart('${item.id}', '${item.name}', ${JSON.stringify(item.prices)})">Add To Cart</button>
+                        </div>
+                    </div>
+                `;
+            });
+            return html;
+        }
+
+        // Logic framework resolving dynamic pricing and multiplication operations
+        function updatePrice(id, prices) {
+            const sizeSelect = document.getElementById(`size-${id}`);
+            const qtyVal = parseInt(document.getElementById(`qty-${id}`).innerText);
+            const priceDisplay = document.getElementById(`price-view-${id}`);
+            
+            if (sizeSelect.value === "") {
+                priceDisplay.innerText = "---";
+                return;
+            }
+            
+            const index = parseInt(sizeSelect.value);
+            const basePrice = prices[index];
+            priceDisplay.innerText = "₹" + (basePrice * qtyVal);
+        }
+
+        function adjustQty(id, change, prices) {
+            const qtyElement = document.getElementById(`qty-${id}`);
+            let currentQty = parseInt(qtyElement.innerText);
+            currentQty += change;
+            if (currentQty < 1) currentQty = 1;
+            qtyElement.innerText = currentQty;
+            
+            updatePrice(id, prices);
+        }
+
+        // Cart State Mutation handler
+        function addToCart(id, name, prices) {
+            const sizeSelect = document.getElementById(`size-${id}`);
+            if (sizeSelect.value === "") {
+                alert("Please select a quantity variant first.");
+                return;
+            }
+            const sizeIdx = parseInt(sizeSelect.value);
+            const sizeLabel = SIZE_LABELS[sizeIdx];
+            const basePrice = prices[sizeIdx];
+            const qty = parseInt(document.getElementById(`qty-${id}`).innerText);
+            
+            // Check if exact variant criteria exists in system cart mapping
+            const existingIndex = cart.findIndex(c => c.id === id && c.size === sizeLabel);
+            if(existingIndex > -1) {
+                cart[existingIndex].qty += qty;
+            } else {
+                cart.push({ id, name, size: sizeLabel, basePrice, qty });
+            }
+            
+            updateCounters();
+            alert(`${name} (${sizeLabel}) successfully added to cart!`);
+        }
+
+        // Wishlist State Mutation handler
+        function toggleWishlist(id, name) {
+            const idx = wishlist.findIndex(w => w.id === id);
+            if (idx > -1) {
+                wishlist.splice(idx, 1);
+                alert(`${name} removed from wishlist.`);
+            } else {
+                wishlist.push({ id, name });
+                alert(`${name} added to wishlist.`);
+            }
+            updateCounters();
+            
+            // Visual DOM sync context update check
+            const btn = document.querySelector(`#card-${id} .wishlist-btn`);
+            if(btn) btn.classList.toggle('active');
+        }
+
+        // Global Dynamic Search functionality
         function handleSearch() {
-            let query = document.getElementById('search-input').value.toLowerCase();
+            const query = document.getElementById('searchInput').value.toLowerCase();
             if(!query) return;
-
-            document.getElementById('view-products').classList.remove('hidden');
-            document.getElementById('view-home').classList.add('hidden');
-            document.getElementById('view-wishlist').classList.add('hidden');
-            document.getElementById('view-cart').classList.add('hidden');
-            document.getElementById('product-page-title').innerText = "Search Results";
-            document.getElementById('pickle-toggles').classList.add('hidden');
-
+            
+            // Filter across datasets
             let matches = [];
-            Object.keys(database).forEach(cat => {
-                database[cat].forEach(item => {
+            Object.keys(STORE_DATA).forEach(cat => {
+                STORE_DATA[cat].forEach(item => {
                     if(item.name.toLowerCase().includes(query)) {
-                        matches.push({ ...item, category: cat });
+                        matches.push(item);
                     }
                 });
             });
-            renderCustomArray(matches);
+
+            const main = document.getElementById('main-content');
+            main.innerHTML = `
+                <h2 class="section-title">Search Results</h2>
+                <div class="products-grid">${matches.length > 0 ? generateProductCards(matches) : '<p style="grid-column:1/-1; text-align:center; padding:20px;">No exact items matched your search query.</p>'}</div>
+            `;
         }
 
-        function calculateCardPrice(id, catKey, baseIndex) {
-            let item = database[catKey].find(i => i.id === id);
-            let selectElement = document.getElementById(`size-${id}`);
-            let qtyElement = document.getElementById(`qty-${id}`);
-            let priceContainer = document.getElementById(`price-box-${id}`);
-
-            if(!selectElement || !qtyElement) return;
-
-            let sizeIdx = selectElement.value;
-            if(sizeIdx === "") {
-                priceContainer.innerText = "Select size to view price";
-                return;
-            }
-
-            let qty = parseInt(qtyElement.value) || 1;
-            let total = item.prices[sizeIdx] * qty;
-            priceContainer.innerText = "₹" + total;
-        }
-
-        function renderProductGrid(categoryKey) {
-            renderCustomArray(database[categoryKey], categoryKey);
-        }
-
-        function renderCustomArray(array, fallbackCat = '') {
-            let container = document.getElementById('product-list-target');
-            container.innerHTML = '';
-
-            if(array.length === 0) {
-                container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:20px;">No items found.</p>';
-                return;
-            }
-
-            array.forEach(item => {
-                let catKey = fallbackCat || item.category;
-                let isFav = wishlist.some(w => w.id === item.id);
-
-                let card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-header">
-                        <span class="product-title">${item.name}</span>
-                        <button class="wishlist-btn ${isFav ? 'active' : ''}" onclick="toggleWishlist('${item.id}', '${catKey}')">
-                            <i class="fa-${isFav ? 'solid' : 'regular'} fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="image-placeholder" style="height:110px; margin-bottom:10px;">
-                        <span>[Upload Picture]</span>
-                    </div>
-                    <select id="size-${item.id}" onchange="calculateCardPrice('${item.id}', '${catKey}')">
-                        <option value="">Choose Size</option>
-                        <option value="0">250gm</option>
-                        <option value="1">500gm</option>
-                        <option value="2">1Kg</option>
-                    </select>
-                    <input type="number" id="qty-${item.id}" min="1" value="1" oninput="calculateCardPrice('${item.id}', '${catKey}')" placeholder="Qty">
-                    <div class="price-display" id="price-box-${item.id}">Select size to view price</div>
-                    <button class="btn-add-cart" onclick="addToCart('${item.id}', '${catKey}')">Add to Cart</button>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function toggleWishlist(id, catKey) {
-            let idx = wishlist.findIndex(w => w.id === id);
-            if(idx > -1) {
-                wishlist.splice(idx, 1);
-            } else {
-                let prod = database[catKey].find(i => i.id === id);
-                wishlist.push({...prod, catKey});
-            }
-            document.getElementById('wishlist-count').innerText = wishlist.length;
-            
-            // Re-render current view context to maintain live feedback
-            let activeTitle = document.getElementById('product-page-title').innerText;
-            if(!document.getElementById('view-products').classList.contains('hidden') && activeTitle !== "Search Results") {
-                renderProductGrid(catKey);
-            } else if (activeTitle === "Search Results") {
-                handleSearch();
-            } else {
-                renderWishlist();
-            }
-        }
-
-        function renderWishlist() {
-            let container = document.getElementById('wishlist-target');
-            container.innerHTML = '';
-            if(wishlist.length === 0) {
-                container.innerHTML = '<p style="grid-column:1/-1; text-align:center;">Your wishlist is empty.</p>';
-                return;
-            }
-            wishlist.forEach(item => {
-                let card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-header">
-                        <span class="product-title">${item.name}</span>
-                        <button class="wishlist-btn active" onclick="toggleWishlist('${item.id}', '${item.catKey}')">
-                            <i class="fa-solid fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="image-placeholder" style="height:110px; margin-bottom:10px;"><span>[Upload Picture]</span></div>
-                    <select id="size-${item.id}" onchange="calculateCardPrice('${item.id}', '${item.catKey}')">
-                        <option value="">Choose Size</option>
-                        <option value="0">250gm</option>
-                        <option value="1">500gm</option>
-                        <option value="2">1Kg</option>
-                    </select>
-                    <input type="number" id="qty-${item.id}" min="1" value="1" oninput="calculateCardPrice('${item.id}', '${item.catKey}')">
-                    <div class="price-display" id="price-box-${item.id}">Select size to view price</div>
-                    <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.catKey}')">Add to Cart</button>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function addToCart(id, catKey) {
-            let sizeSel = document.getElementById(`size-${id}`).value;
-            let qtyVal = parseInt(document.getElementById(`qty-${id}`).value);
-
-            if(sizeSel === "") {
-                alert("Please select a weight parameter size before adding!");
-                return;
-            }
-            if(!qtyVal || qtyVal < 1) {
-                alert("Please select a valid structural quantity.");
-                return;
-            }
-
-            let prod = database[catKey].find(i => i.id === id);
-            let computedPrice = prod.prices[sizeSel] * qtyVal;
-
-            let existingIndex = cart.findIndex(c => c.id === id && c.sizeIndex === sizeSel);
-            if(existingIndex > -1) {
-                cart[existingIndex].qty += qtyVal;
-                cart[existingIndex].totalCost += computedPrice;
-            } else {
-                cart.push({
-                    id: prod.id,
-                    name: prod.name,
-                    sizeLabel: sizeLabels[sizeSel],
-                    sizeIndex: sizeSel,
-                    qty: qtyVal,
-                    unitPrice: prod.prices[sizeSel],
-                    totalCost: computedPrice
-                });
-            }
-            
-            document.getElementById('cart-count').innerText = cart.length;
-            alert(`${prod.name} (${sizeLabels[sizeSel]}) added to Cart successfully!`);
-        }
-
-        function renderCart() {
-            let target = document.getElementById('cart-items-list');
-            let formContainer = document.getElementById('checkout-form-container');
-            target.innerHTML = '';
-            
+        // View Cart Rendering implementation
+        function renderCartView() {
+            const main = document.getElementById('main-content');
             if(cart.length === 0) {
-                target.innerHTML = '<p style="text-align:center; padding:20px;">Your cart is empty.</p>';
-                document.getElementById('cart-grand-total').innerText = "Grand Total: ₹0";
-                formContainer.classList.add('hidden');
+                main.innerHTML = `<div class="view-panel"><h2 class="section-title">Your Cart</h2><p style="text-align:center;">Your cart is completely empty.</p></div>`;
                 return;
             }
 
-            formContainer.classList.remove('hidden');
-            let grandTotal = 0;
-
+            let cartItemsHTML = '';
+            let totalOrderValue = 0;
+            
             cart.forEach((item, index) => {
-                grandTotal += item.totalCost;
-                let div = document.createElement('div');
-                div.className = 'cart-item';
-                div.innerHTML = `
-                    <div>
-                        <strong style="font-size:0.95rem;">${item.name}</strong><br>
-                        <span style="font-size:0.85rem; color:#666;">Size: ${item.sizeLabel} | Qty: ${item.qty}</span>
-                    </div>
-                    <div style="text-align:right; display:flex; align-items:center; gap:12px;">
-                        <span style="font-weight:600; color:var(--secondary)">₹${item.totalCost}</span>
-                        <i class="fa-solid fa-trash-can" style="color:var(--primary); cursor:pointer;" onclick="removeFromCart(${index})"></i>
+                const itemTotal = item.basePrice * item.qty;
+                totalOrderValue += itemTotal;
+                cartItemsHTML += `
+                    <div class="panel-item">
+                        <div>
+                            <strong>${item.name}</strong> <small>(${item.size})</small>
+                            <div>₹${item.basePrice} x ${item.qty}</div>
+                        </div>
+                        <div>
+                            <span style="font-weight:bold; margin-right:15px;">₹${itemTotal}</span>
+                            <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#c0392b; cursor:pointer;"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
                     </div>
                 `;
-                target.appendChild(div);
             });
 
-            document.getElementById('cart-grand-total').innerText = "Grand Total: ₹" + grandTotal;
+            main.innerHTML = `
+                <div class="view-panel">
+                    <h2 class="section-title" style="margin-top:0;">Your Selected Items</h2>
+                    ${cartItemsHTML}
+                    <div style="display:flex; justify-content:space-between; font-weight:700; font-size:18px; padding:15px 0; border-bottom:2px solid #333;">
+                        <span>Grand Total:</span>
+                        <span>₹${totalOrderValue}</span>
+                    </div>
+
+                    <h3 style="margin:20px 0 10px; color:var(--primary-color);">Shipping & Delivery Address</h3>
+                    <form id="orderForm" onsubmit="executeWhatsAppCheckout(event)">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="form-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Country *</label>
+                            <input type="text" id="form-country" value="India" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>State *</label>
+                            <select id="form-state" required>
+                                <option value="">Select State</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Other">Other State</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Complete Street Address *</label>
+                            <textarea id="form-address" rows="3" placeholder="House/Plot no, Street details" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Apartment, suite, unit, etc. (Optional)</label>
+                            <input type="text" id="form-apt">
+                        </div>
+                        <div class="form-group">
+                            <label>City *</label>
+                            <input type="text" id="form-city" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Pincode *</label>
+                            <input type="text" id="form-pincode" pattern="[0-9]{6}" title="Please provide a valid 6-digit PIN code" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="form-phone" pattern="[0-9]{10}" title="Please enter a valid 10-digit primary phone number" required>
+                        </div>
+
+                        <button type="submit" class="checkout-btn">
+                            <i class="fa-brands fa-whatsapp"></i> Place Order via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            `;
         }
 
         function removeFromCart(index) {
             cart.splice(index, 1);
-            document.getElementById('cart-count').innerText = cart.length;
-            renderCart();
+            updateCounters();
+            renderCartView();
         }
 
-        function handleCheckout(e) {
-            e.preventDefault();
-            
-            if(cart.length === 0) return;
+        // View Wishlist Rendering implementation
+        function renderWishlistView() {
+            const main = document.getElementById('main-content');
+            if(wishlist.length === 0) {
+                main.innerHTML = `<div class="view-panel"><h2 class="section-title">Your Wishlist</h2><p style="text-align:center;">Your wishlist is empty.</p></div>`;
+                return;
+            }
 
-            let name = document.getElementById('cust-name').value;
-            let country = document.getElementById('cust-country').value;
-            let state = document.getElementById('cust-state').value;
-            let address = document.getElementById('cust-address').value;
-            let suite = document.getElementById('cust-suite').value;
-            let city = document.getElementById('cust-city').value;
-            let pincode = document.getElementById('cust-pincode').value;
-            let phone = document.getElementById('cust-phone').value;
-
-            // Generate WhatsApp Structured Order Text
-            let message = `*Ruchi Tarangam New Order*\n`;
-            message += `=========================\n\n`;
-            message += `*Items Ordered:*\n`;
-            
-            let grandTotal = 0;
-            cart.forEach(item => {
-                message += `- ${item.name} (${item.sizeLabel}) x ${item.qty} = ₹${item.totalCost}\n`;
-                grandTotal += item.totalCost;
+            let itemsHTML = '';
+            wishlist.forEach((item, index) => {
+                itemsHTML += `
+                    <div class="panel-item">
+                        <span><strong>${item.name}</strong></span>
+                        <button onclick="removeFromWishlist(${index})" style="background:none; border:none; color:#c0392b; cursor:pointer;"><i class="fa-solid fa-trash-can"></i> Remove</button>
+                    </div>
+                `;
             });
-            
-            message += `\n*Grand Total:* ₹${grandTotal}\n\n`;
-            message += `*Delivery Details:*\n`;
-            message += `- Name: ${name}\n`;
-            message += `- Phone: ${phone}\n`;
-            message += `- Address: ${address}${suite ? ', ' + suite : ''}\n`;
-            message += `- City: ${city}\n`;
-            message += `- State: ${state}\n`;
-            message += `- Pincode: ${pincode}\n`;
-            message += `- Country: ${country}\n`;
 
-            let whatsappNumber = "9533338836";
-            let encodedUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+            main.innerHTML = `
+                <div class="view-panel">
+                    <h2 class="section-title" style="margin-top:0;">Your Wishlist Items</h2>
+                    ${itemsHTML}
+                </div>
+            `;
+        }
+
+        function removeFromWishlist(index) {
+            wishlist.splice(index, 1);
+            updateCounters();
+            renderWishlistView();
+        }
+
+        // WhatsApp Text Formatting Engine & Relocation dispatcher
+        function executeWhatsAppCheckout(event) {
+            event.preventDefault();
+
+            // Extract verified Address context inputs
+            const name = document.getElementById('form-name').value;
+            const country = document.getElementById('form-country').value;
+            const state = document.getElementById('form-state').value;
+            const address = document.getElementById('form-address').value;
+            const apt = document.getElementById('form-apt').value || 'N/A';
+            const city = document.getElementById('form-city').value;
+            const pincode = document.getElementById('form-pincode').value;
+            const phone = document.getElementById('form-phone').value;
+
+            // Compile structured text layout string
+            let messageText = `*NEW ORDER - RUCHI TARANGAM*\n`;
+            messageText += `----------------------------------------\n\n`;
+            messageText += `*📦 ORDERED ITEMS:*\n`;
             
-            // Clean cart storage & dispatch
-            cart = [];
-            document.getElementById('cart-count').innerText = "0";
-            document.getElementById('shipping-form').reset();
-            switchTab('home');
+            let total = 0;
+            cart.forEach((item, i) => {
+                const sub = item.basePrice * item.qty;
+                total += sub;
+                messageText += `${i+1}. ${item.name} (${item.size}) - ${item.qty} Qty [₹${sub}]\n`;
+            });
+
+            messageText += `\n*Grand Total:* ₹${total}\n\n`;
+            messageText += `----------------------------------------\n`;
+            messageText += `*📍 SHIPPING DETAILS:*\n`;
+            messageText += `• *Name:* ${name}\n`;
+            messageText += `• *Address:* ${address}\n`;
+            messageText += `• *Apt/Suite:* ${apt}\n`;
+            messageText += `• *City:* ${city}\n`;
+            messageText += `• *Pincode:* ${pincode}\n`;
+            messageText += `• *State:* ${state}\n`;
+            messageText += `• *Country:* ${country}\n`;
+            messageText += `• *Phone:* ${phone}\n`;
+            messageText += `----------------------------------------`;
+
+            // Transform raw payload elements to secure clean URI blocks
+            const encryptedMessage = encodeURIComponent(messageText);
+            const targetWhatsAppURL = `https://wa.me/919533338836?text=${encryptedMessage}`;
             
-            window.open(encodedUrl, '_blank');
+            // Redirect directly to custom API window link
+            window.open(targetWhatsAppURL, '_blank');
         }
     </script>
 </body>
