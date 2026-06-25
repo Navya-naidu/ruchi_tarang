@@ -256,14 +256,13 @@
             margin: 8px auto 0;
         }
 
-        /* --- HOME CATEGORY GRID (UPDATED) --- */
+        /* --- HOME CATEGORY GRID (UPDATED TO MEDIUM SIZE) --- */
         .category-grid {
             display: grid;
-            /* Changed to auto-fit with a minimum width close to your target size */
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+            gap: 25px;
             margin-bottom: 50px;
-            justify-items: center;
+            justify-content: center;
         }
 
         .category-card {
@@ -275,8 +274,7 @@
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid rgba(255,140,0,0.2);
-            /* Force exact requested dimensions on the card framework */
-            width: 462px; 
+            width: 260px; 
             height: auto;
         }
 
@@ -285,10 +283,9 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         }
 
-        /* Exact dimension handling for category images */
         .category-card img {
-            width: 462px;
-            height: 494px; 
+            width: 260px;
+            height: 280px; 
             object-fit: cover;
             display: block;
             margin: 0 auto;
@@ -302,7 +299,6 @@
             background-color: var(--bg-accent); 
             border-top: 1px solid rgba(255,140,0,0.2);
         }
-
         /* --- SUB-NAV FOR FILTERING --- */
         .sub-nav {
             display: flex;
