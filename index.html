@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruchi Tarangam - Waves of Flavors</title>
+    <!-- FontAwesome for clean icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -11,7 +12,7 @@
             --secondary: #FF8C00;
             --dark: #2F2F2F;
             --light: #FFF8F0;
-            --bg-accent: #FFF3E0; 
+            --bg-accent: #FFF3E0; /* Rich warm background color accent */
             --white: #ffffff;
             --shadow: rgba(0, 0, 0, 0.1);
         }
@@ -26,12 +27,12 @@
         body {
             background-color: var(--light);
             color: var(--dark);
-            padding-bottom: 40px; 
+            padding-bottom: 40px; /* Space for the sticky bottom marquee */
         }
 
         /* --- HEADER & NAVIGATION --- */
         header {
-            background-color: var(--bg-accent); 
+            background-color: var(--bg-accent); /* Warm header color */
             box-shadow: 0 2px 10px var(--shadow);
             position: sticky;
             top: 0;
@@ -63,7 +64,7 @@
             max-width: 6in;
             max-height: 6in;
             object-fit: cover;
-            border-radius: 50%; 
+            border-radius: 50%; /* Made logo perfectly circular */
             border: 4px solid var(--secondary);
             background-color: var(--white);
         }
@@ -255,24 +256,28 @@
             margin: 8px auto 0;
         }
 
-        /* --- HOME CATEGORY GRID --- */
+        /* --- HOME CATEGORY GRID (UPDATED) --- */
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
+            /* Changed to auto-fit with a minimum width close to your target size */
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
             margin-bottom: 50px;
+            justify-items: center;
         }
 
-        /* Category Card: Added 24px (1.5rem) border radius formatting */
         .category-card {
             background-color: var(--white);
-            border-radius: 24px; /* Applied 24px / 1.5rem cleanly */
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 8px var(--shadow);
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid rgba(255,140,0,0.2);
+            /* Force exact requested dimensions on the card framework */
+            width: 462px; 
+            height: auto;
         }
 
         .category-card:hover {
@@ -280,12 +285,13 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         }
 
-        /* Image dimension tailored exactly for the 6x6 inch footprint constraint */
+        /* Exact dimension handling for category images */
         .category-card img {
-            width: 100%;
-            height: 380px; 
-            max-height: 6in;
+            width: 462px;
+            height: 494px; 
             object-fit: cover;
+            display: block;
+            margin: 0 auto;
         }
 
         .category-card h3 {
@@ -383,7 +389,7 @@
             flex-direction: column;
             flex-grow: 1;
             justify-content: space-between;
-            background-color: #fffdfb; 
+            background-color: #fffdfb;
         }
 
         .product-title {
@@ -697,33 +703,23 @@
                 flex-direction: column;
                 align-items: center;
             }
-            .category-card img {
-                height: 300px;
-            }
-        }
-        @media (max-width: 500px) {
-            .header-actions {
+            /* Fluid scaling below desktop boundaries */
+            .category-card, .category-card img {
                 width: 100%;
-                justify-content: space-between;
-            }
-            .search-box {
-                flex-grow: 1;
-            }
-            .search-box input {
-                width: 100%;
-            }
-            .search-box input:focus {
-                width: 100%;
+                max-width: 462px;
+                height: auto;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Top Info Bar -->
     <div class="shipping-banner">
         <i class="fa-solid fa-truck-fast"></i> Free Shipping on all orders above ₹999!
     </div>
 
+    <!-- --- HEADER AND NAV --- -->
     <header>
         <div class="nav-container">
             <a onclick="showPage('home')" class="logo-area">
@@ -759,6 +755,7 @@
         </div>
     </header>
 
+    <!-- --- HOME PAGE --- -->
     <div id="page-home" class="page active-page">
         <h2 class="shop-categories-title">Shop Our Home Made Categories</h2>
         <div class="category-grid">
@@ -780,6 +777,7 @@
             </div>
         </div>
 
+        <!-- ABOUT US SECTION -->
         <div class="about-section">
             <h2 class="section-title">About Us</h2>
             <div class="about-content">
@@ -788,6 +786,7 @@
         </div>
     </div>
 
+    <!-- --- PICKLES PAGE --- -->
     <div id="page-pickles" class="page">
         <h2 class="section-title">Pickles Collection</h2>
         <div class="sub-nav">
@@ -798,22 +797,26 @@
         <div id="pickles-grid" class="products-container"></div>
     </div>
 
+    <!-- --- PODIS PAGE --- -->
     <div id="page-podis" class="page">
         <h2 class="section-title">Podis</h2>
         <div id="podis-grid" class="products-container"></div>
     </div>
 
+    <!-- --- SWEETS PAGE --- -->
     <div id="page-sweets" class="page">
         <h2 class="section-title">Sweets</h2>
         <div id="sweets-grid" class="products-container"></div>
     </div>
 
+    <!-- --- SNACKS PAGE --- -->
     <div id="page-snacks" class="page">
         <h2 class="section-title">Snacks</h2>
         <div id="snacks-grid" class="products-container"></div>
     </div>
 
 
+    <!-- --- WISHLIST SIDE PANEL --- -->
     <div id="wishlist-panel" class="side-panel">
         <div class="panel-header">
             <h2>My Wishlist</h2>
@@ -823,6 +826,7 @@
     </div>
 
 
+    <!-- --- CART / CHECKOUT SIDE PANEL --- -->
     <div id="cart-panel" class="side-panel">
         <div class="panel-header">
             <h2>Your Shopping Cart</h2>
@@ -897,6 +901,7 @@
     </div>
 
 
+    <!-- --- FOOTER --- -->
     <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -930,6 +935,7 @@
         </div>
     </footer>
 
+    <!-- --- STICKY BOTTOM MARQUEE BAR --- -->
     <div class="marquee-wrapper">
         <div class="marquee-content">
             <span><i class="fa-solid fa-leaf"></i> No Added Preservatives</span>
@@ -943,6 +949,7 @@
         </div>
     </div>
 
+    <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
         const productsData = {
             veg: [
