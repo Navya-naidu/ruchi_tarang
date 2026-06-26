@@ -1203,71 +1203,23 @@
             }, 600); 
         }
 
-       function removeFromCart(index) {
+        function removeFromCart(index) {
             cart.splice(index, 1);
             renderCart();
         }
-
-        function updateCartQty(index, change) {
-            // Force the current quantity to be a number and update it
-            let currentQty = parseInt(cart[index].qty);
-            let newQty = currentQty + change;
-
-            if (newQty <= 0) {
-                removeFromCart(index);
-            } else {
-                cart[index].qty = newQty;
-                renderCart();
-            }
-        }
-
-        function renderCart() {
-            const container = document.getElementById('cart-items-container');
-            const formWrapper = document.getElementById('checkout-form-wrapper');
-            const countBadge = document.getElementById('cart-count');
-            
-            // Update cart badge count
-            countBadge.innerText = cart.reduce((acc, curr) => acc + curr.qty, 0);
-            
-            if(cart.length === 0) {
-                container.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">Your cart is empty.</p>`;
-                formWrapper.style.display = "none";
-                return;
-            }
-            
-            formWrapper.style.display = "block";
-            let subtotal = 0;
-            
-            container.innerHTML = cart.map((item, index) => {
-                const totalItemPrice = item.unitPrice * item.qty;
-                subtotal += totalItemPrice;
-                return `
-                    <div class="panel-item" style="align-items: center;">
-                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://placehold.co/50x50'">
-                        <div class="panel-item-details">
-                            <div class="panel-item-name">${item.name}</div>
-                            <div class="panel-item-meta">Size: ${item.sizeLabel}</div>
-                            
-                            <div style="display: flex; align-items: center; gap: 10px; margin: 6px 0;">
-                                <button type="button" onclick="updateCartQty(${index}, -1)" style="width: 28px; height: 28px; border: none; background: #eee; border-radius: 4px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: background 0.2s;">-</button>
-                                <span style="font-weight: 600; font-size: 0.95rem; min-width: 15px; text-align: center;">${item.qty}</span>
-                                <button type="button" onclick="updateCartQty(${index}, 1)" style="width: 28px; height: 28px; border: none; background: #eee; border-radius: 4px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: background 0.2s;">+</button>
-                            </div>
-
-                            <div class="panel-item-meta" style="font-weight:bold; color:var(--primary)">₹${totalItemPrice}</div>
-                        </div>
-                        <button class="remove-item" onclick="removeFromCart(${index})" style="margin-left: auto;"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                `;
-            }).join('');
-            
-            let shippingCharges = subtotal > 999 ? 0 : 60; 
-            let grandTotal = subtotal + shippingCharges;
-            
-            document.getElementById('cart-subtotal').innerText = `₹${subtotal}`;
-            document.getElementById('cart-shipping').innerText = shippingCharges === 0 ? "FREE" : `₹${shippingCharges}`;
-            document.getElementById('cart-grand-total').innerText = `₹${grandTotal}`;
-        }
+function renderCart() {
+    const container = document.getElementById('cart-items-container');
+    const formWrapper = document.getElementById('checkout-form-wrapper');
+    const countBadge = document.getElementById('cart-count');
+    
+    // Update cart badge count
+    countBadge.innerText = cart.reduce((acc, curr) => acc + curr.qty, 0);
+    
+    if(cart.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">Your cart is empty.</p>`;
+        formWrapper.style.display = "none";
+        return;
+    }
     
     formWrapper.style.display = "block";
     let subtotal = 0;
