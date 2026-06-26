@@ -95,7 +95,6 @@
             margin: 0 auto;
         }
 
-        /* Restores the Maroon Navigation Highlights */
         nav a {
             font-family: 'Plus Jakarta Sans', sans-serif;
             text-decoration: none;
@@ -170,40 +169,8 @@
             justify-content: center;
             font-weight: bold;
         }
+
         /* Free Shipping Banner */
-        .shipping-banner {
-            background-color: #fff3cd;
-            color: #856404;
-            text-align: center;
-            padding: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border-bottom: 1px solid #ffeeba;
-        }
-
-        /* --- STICKY BOTTOM MARQUEE --- */
-        .marquee-wrapper {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 10px 0;
-            overflow: hidden;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
-        }
-
-        .marquee-content {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 25s linear infinite;
-            padding-left: 100%;
-        }        /* Free Shipping Banner */
         .shipping-banner {
             background-color: #fff3cd;
             color: #856404;
@@ -294,7 +261,7 @@
             margin: 8px auto 0;
         }
 
-        /* --- HOME CATEGORY GRID (UPDATED TO MEDIUM SIZE) --- */
+        /* --- HOME CATEGORY GRID --- */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
@@ -337,6 +304,7 @@
             background-color: var(--bg-accent); 
             border-top: 1px solid rgba(255,140,0,0.2);
         }
+
         /* --- SUB-NAV FOR FILTERING --- */
         .sub-nav {
             display: flex;
@@ -353,7 +321,7 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1..1rem;
             transition: all 0.3s;
         }
 
@@ -441,56 +409,6 @@
 
         .product-controls {
             margin-top: 10px;
-        }
-
-        .size-select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: var(--white);
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            outline: none;
-            font-weight: 600;
-        }
-
-        .qty-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .qty-counter {
-            display: flex;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .qty-counter button {
-            background-color: #f1f1f1;
-            border: none;
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .qty-counter span {
-            width: 35px;
-            text-align: center;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .price-display {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--primary);
         }
 
         .add-to-cart-btn {
@@ -718,7 +636,49 @@
             margin-top: 15px;
         }
 
-        /* --- MOBILE RESPONSIVE --- */
+        /* --- NEW SIZE PILLS LAYOUT (ACCESSIBLE TO ALL SCREEN SIZES) --- */
+        .size-pills-container {
+            display: flex;
+            gap: 8px;
+            margin: 12px 0;
+            justify-content: flex-start;
+        }
+
+        .size-pill {
+            background-color: var(--white);
+            border: 1px solid #ddd;
+            color: var(--dark);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .size-pill:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .size-pill.active {
+            /* Styled to match your orange brand accents seamlessly! */
+            background-color: var(--secondary); 
+            border-color: var(--secondary);
+            color: var(--white);
+        }
+
+        .price-row {
+            margin: 12px 0;
+        }
+        
+        .price-row .price-display {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* --- MOBILE RESPONSIVE MEDIA QUERY --- */
         @media (max-width: 992px) {
             .nav-container {
                 flex-direction: column;
@@ -737,55 +697,13 @@
                 flex-direction: column;
                 align-items: center;
             }
-            /* Fluid scaling below desktop boundaries */
             .category-card, .category-card img {
                 width: 100%;
                 max-width: 462px;
                 height: auto;
             }
-            /* Container for size options */
-.size-pills-container {
-    display: flex;
-    gap: 8px;
-    margin: 12px 0;
-    justify-content: flex-start;
-}
-
-/* Individual size buttons */
-.size-pill {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    color: #333;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-/* Hover effect */
-.size-pill:hover {
-    border-color: #ff9800;
-    color: #ff9800;
-}
-
-/* Active/Selected size pill style */
-.size-pill.active {
-    background-color: #a8bce4; /* Light pastel blue/purple like reference, or change to match your theme */
-    border-color: #7995ce;
-    color: #ffffff;
-}
-
-/* Aligning price right below pills like the reference site */
-.price-row {
-    margin: 10px 0;
-    font-size: 18px;
-    font-weight: 700;
-    color: #222;
-}
         }
-    </style>
+</style>
 </head>
 <body>
 
