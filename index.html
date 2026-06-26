@@ -743,6 +743,47 @@
                 max-width: 462px;
                 height: auto;
             }
+            /* Container for size options */
+.size-pills-container {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0;
+    justify-content: flex-start;
+}
+
+/* Individual size buttons */
+.size-pill {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.size-pill:hover {
+    border-color: #ff9800;
+    color: #ff9800;
+}
+
+/* Active/Selected size pill style */
+.size-pill.active {
+    background-color: #a8bce4; /* Light pastel blue/purple like reference, or change to match your theme */
+    border-color: #7995ce;
+    color: #ffffff;
+}
+
+/* Aligning price right below pills like the reference site */
+.price-row {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+}
         }
     </style>
 </head>
