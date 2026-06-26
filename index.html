@@ -1121,137 +1121,273 @@
             container.innerHTML = combinedHTML;
         }
 
-        function generateProductHTML(item, categoryKey) {
-            const isWishlisted = wishlist.includes(item.id) ? 'active' : '';
-            return `
-                <div class="product-card" data-name="${item.name.toLowerCase()}">
-                    <div class="product-img-wrapper">
-                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://placehold.co/300x200?text=${item.name}'">
-                        <button class="wishlist-heart ${isWishlisted}" onclick="toggleWishlist('${item.id}', '${categoryKey}')" id="wish-${item.id}">
-                            <i class="fa-solid fa-heart"></i>
-                        </button>
+       function generateProductHTML(item, categoryKey) {
+    const isWishlisted = wishlist.includes(item.id) ? 'active' : '';
+    
+    // Default size is index 0 (e.g., 250gm)
+    return `
+        <div class="product-card" data-name="${item.name.toLowerCase()}">
+            <div class="product-img-wrapper">
+                <img src="${item.img}" alt="${item.name}" onerror="this.src='https://placehold.co/300x200?text=${item.name}'">
+                <button class="wishlist-heart ${isWishlisted}" onclick="toggleWishlist('${item.id}', '${categoryKey}')" id="wish-${item.id}">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+            </div>
+            <div class="product-info">
+                <div class="product-title">${item.name}</div>
+                <div class="product-controls">
+                    
+                    <div class="size-pills-container" id="size-container-${item.id}" data-selected-size="0">
+                        <button class="size-pill active" onclick="selectCardSize('${item.id}', 0)">${sizeLabels[0]}</button>
+                        <button class="size-pill" onclick="selectCardSize('${item.id}', 1)">${sizeLabels[1]}</button>
+                        <button class="size-pill" onclick="selectCardSize('${item.id}', 2)">${sizeLabels[2]}</button>
                     </div>
-                    <div class="product-info">
-                        <div class="product-title">${item.name}</div>
-                        <div class="product-controls">
-                            <select class="size-select" id="size-${item.id}" onchange="updateCardPrice('${item.id}', '${categoryKey}')">
-                                <option value="0">${sizeLabels[0]}</option>
-                                <option value="1">${sizeLabels[1]}</option>
-                                <option value="2">${sizeLabels[2]}</option>
-                            </select>
-                            <div class="qty-row">
-                                <div class="qty-counter">
-                                    <button onclick="changeCardQty('${item.id}', '${categoryKey}', -1)">-</button>
-                                    <span id="qty-${item.id}">1</span>
-                                    <button onclick="changeCardQty('${item.id}', '${categoryKey}', 1)">+</button>
-                                </div>
-                                <div class="price-display" id="price-${item.id}">₹${item.prices[0]}</div>
-                            </div>
-                            <button class="add-to-cart-btn" onclick="addToCart('${item.id}', '${categoryKey}')">
-                                <i class="fa-solid fa-cart-plus"></i> Add to Cart
-                            </button>
-                        </div>
+
+                    <div class="price-row">
+                        <span class="price-display" id="price-${item.id}">₹${item.prices[0]}</span>
                     </div>
+
+                    <button class="add-to-cart-btn" onclick="addToCart('${item.id}', '${categoryKey}')">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
                 </div>
-            `;
+            </div>
+        </div>
+    `;
+}
+
+// NEW: Dynamically handles pill selection styling and updates prices
+function selectCardSize(id, sizeIndex) {
+    const container = document.getElementById(`size-container-${id}`);
+    if (!container) return;
+    
+    // Remove active class from all pills in this card, add to clicked one
+    container.querySelectorAll('.size-pill').forEach((btn, idx) => {
+        if (idx === sizeIndex) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
         }
+    });
+    
+    // Save selection into the container data attribute
+    container.setAttribute('data-selected-size', sizeIndex);
+    
+    // Dynamically look up product data and update price text
+    const item = findItemInGlobal(id);
+    if (item) {
+        document.getElementById(`price-${id}`).innerText = `₹${item.prices[sizeIndex]}`;
+    }
+}
 
-        function updateCardPrice(id, category) {
-            const select = document.getElementById(`size-${id}`);
-            const qtySpan = document.getElementById(`qty-${id}`);
-            const priceDiv = document.getElementById(`price-${id}`);
-            
-            const item = findItemInGlobal(id);
-            const sizeIndex = parseInt(select.value);
-            const quantity = parseInt(qtySpan.innerText);
-            
-            priceDiv.innerText = `₹${item.prices[sizeIndex] * quantity}`;
+function findItemInGlobal(id) {
+    for (let cat in productsData) {
+        const found = productsData[cat].find(i => i.id === id);
+        if (found) return found;
+    }
+    return null;
+}
+
+function renderStaticGrids() {
+    document.getElementById('podis-grid').innerHTML = productsData.podi.map(item => generateProductHTML(item, 'podi')).join('');
+    document.getElementById('sweets-grid').innerHTML = productsData.sweet.map(item => generateProductHTML(item, 'sweet')).join('');
+    document.getElementById('snacks-grid').innerHTML = productsData.snacks.map(item => generateProductHTML(item, 'snacks')).join('');
+}
+
+function handleSearch() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    if(query.trim() !== "") {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const match = card.getAttribute('data-name').includes(query);
+            card.style.display = match ? "flex" : "none";
+        });
+    } else {
+        document.querySelectorAll('.product-card').forEach(card => card.style.display = "flex");
+    }
+}
+
+function togglePanel(panelType) {
+    const cartPanel = document.getElementById('cart-panel');
+    const wishlistPanel = document.getElementById('wishlist-panel');
+    
+    if(panelType === 'cart') {
+        wishlistPanel.classList.remove('open');
+        cartPanel.classList.toggle('open');
+    } else {
+        cartPanel.classList.remove('open');
+        wishlistPanel.classList.toggle('open');
+    }
+}
+
+// Safe layout helper
+function closeAllPanels() {
+    document.getElementById('cart-panel').classList.remove('open');
+    document.getElementById('wishlist-panel').classList.remove('open');
+}
+
+function addToCart(id, category) {
+    const container = document.getElementById(`size-container-${id}`);
+    // Read which size index pill is currently active
+    const sizeIndex = container ? parseInt(container.getAttribute('data-selected-size') || '0') : 0;
+    const item = findItemInGlobal(id);
+    const qty = 1; // Direct add matches your reference site workflow perfectly
+    
+    const existingIndex = cart.findIndex(c => c.id === id && c.sizeIndex === sizeIndex);
+    if(existingIndex > -1) {
+        cart[existingIndex].qty += qty;
+    } else {
+        cart.push({
+            id: id,
+            name: item.name,
+            sizeIndex: sizeIndex,
+            sizeLabel: sizeLabels[sizeIndex],
+            unitPrice: item.prices[sizeIndex],
+            qty: qty,
+            img: item.img
+        });
+    }
+    
+    // Run flying image confirmation animation
+    if (typeof flyToCartAnimation === "function") {
+        flyToCartAnimation(id);
+    }
+    
+    // Render updated counts to cart sidebar screen
+    renderCart(); 
+}function generateProductHTML(item, categoryKey) {
+    const isWishlisted = wishlist.includes(item.id) ? 'active' : '';
+    
+    // Default size is index 0 (e.g., 250gm)
+    return `
+        <div class="product-card" data-name="${item.name.toLowerCase()}">
+            <div class="product-img-wrapper">
+                <img src="${item.img}" alt="${item.name}" onerror="this.src='https://placehold.co/300x200?text=${item.name}'">
+                <button class="wishlist-heart ${isWishlisted}" onclick="toggleWishlist('${item.id}', '${categoryKey}')" id="wish-${item.id}">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+            </div>
+            <div class="product-info">
+                <div class="product-title">${item.name}</div>
+                <div class="product-controls">
+                    
+                    <div class="size-pills-container" id="size-container-${item.id}" data-selected-size="0">
+                        <button class="size-pill active" onclick="selectCardSize('${item.id}', 0)">${sizeLabels[0]}</button>
+                        <button class="size-pill" onclick="selectCardSize('${item.id}', 1)">${sizeLabels[1]}</button>
+                        <button class="size-pill" onclick="selectCardSize('${item.id}', 2)">${sizeLabels[2]}</button>
+                    </div>
+
+                    <div class="price-row">
+                        <span class="price-display" id="price-${item.id}">₹${item.prices[0]}</span>
+                    </div>
+
+                    <button class="add-to-cart-btn" onclick="addToCart('${item.id}', '${categoryKey}')">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// NEW: Dynamically handles pill selection styling and updates prices
+function selectCardSize(id, sizeIndex) {
+    const container = document.getElementById(`size-container-${id}`);
+    if (!container) return;
+    
+    // Remove active class from all pills in this card, add to clicked one
+    container.querySelectorAll('.size-pill').forEach((btn, idx) => {
+        if (idx === sizeIndex) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
         }
+    });
+    
+    // Save selection into the container data attribute
+    container.setAttribute('data-selected-size', sizeIndex);
+    
+    // Dynamically look up product data and update price text
+    const item = findItemInGlobal(id);
+    if (item) {
+        document.getElementById(`price-${id}`).innerText = `₹${item.prices[sizeIndex]}`;
+    }
+}
 
-        function changeCardQty(id, category, change) {
-            const qtySpan = document.getElementById(`qty-${id}`);
-            let currentQty = parseInt(qtySpan.innerText) + change;
-            if (currentQty < 1) currentQty = 1;
-            qtySpan.innerText = currentQty;
-            
-            updateCardPrice(id, category);
-        }
+function findItemInGlobal(id) {
+    for (let cat in productsData) {
+        const found = productsData[cat].find(i => i.id === id);
+        if (found) return found;
+    }
+    return null;
+}
 
-        function findItemInGlobal(id) {
-            for (let cat in productsData) {
-                const found = productsData[cat].find(i => i.id === id);
-                if (found) return found;
-            }
-            return null;
-        }
+function renderStaticGrids() {
+    document.getElementById('podis-grid').innerHTML = productsData.podi.map(item => generateProductHTML(item, 'podi')).join('');
+    document.getElementById('sweets-grid').innerHTML = productsData.sweet.map(item => generateProductHTML(item, 'sweet')).join('');
+    document.getElementById('snacks-grid').innerHTML = productsData.snacks.map(item => generateProductHTML(item, 'snacks')).join('');
+}
 
-        function renderStaticGrids() {
-            document.getElementById('podis-grid').innerHTML = productsData.podi.map(item => generateProductHTML(item, 'podi')).join('');
-            document.getElementById('sweets-grid').innerHTML = productsData.sweet.map(item => generateProductHTML(item, 'sweet')).join('');
-            document.getElementById('snacks-grid').innerHTML = productsData.snacks.map(item => generateProductHTML(item, 'snacks')).join('');
-        }
+function handleSearch() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    if(query.trim() !== "") {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const match = card.getAttribute('data-name').includes(query);
+            card.style.display = match ? "flex" : "none";
+        });
+    } else {
+        document.querySelectorAll('.product-card').forEach(card => card.style.display = "flex");
+    }
+}
 
-        function handleSearch() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            if(query.trim() !== "") {
-                document.querySelectorAll('.product-card').forEach(card => {
-                    const match = card.getAttribute('data-name').includes(query);
-                    card.style.display = match ? "flex" : "none";
-                });
-            } else {
-                document.querySelectorAll('.product-card').forEach(card => card.style.display = "flex");
-            }
-        }
+function togglePanel(panelType) {
+    const cartPanel = document.getElementById('cart-panel');
+    const wishlistPanel = document.getElementById('wishlist-panel');
+    
+    if(panelType === 'cart') {
+        wishlistPanel.classList.remove('open');
+        cartPanel.classList.toggle('open');
+    } else {
+        cartPanel.classList.remove('open');
+        wishlistPanel.classList.toggle('open');
+    }
+}
 
-        function togglePanel(panelType) {
-            const cartPanel = document.getElementById('cart-panel');
-            const wishlistPanel = document.getElementById('wishlist-panel');
-            
-            if(panelType === 'cart') {
-                wishlistPanel.classList.remove('open');
-                cartPanel.classList.toggle('open');
-            } else {
-                cartPanel.classList.remove('open');
-                wishlistPanel.classList.toggle('open');
-            }
-        }
+// Safe layout helper
+function closeAllPanels() {
+    document.getElementById('cart-panel').classList.remove('open');
+    document.getElementById('wishlist-panel').classList.remove('open');
+}
 
-        function closeAllPanels() {
-            document.getElementById('cart-panel').classList.remove('open');
-            document.getElementById('wishlist-panel').classList.remove('open');
-        }
-
-        function addToCart(id, category) {
-            const sizeIndex = parseInt(document.getElementById(`size-${id}`).value);
-            const qty = parseInt(document.getElementById(`qty-${id}`).innerText);
-            const item = findItemInGlobal(id);
-            
-            const existingIndex = cart.findIndex(c => c.id === id && c.sizeIndex === sizeIndex);
-            if(existingIndex > -1) {
-                cart[existingIndex].qty += qty;
-            } else {
-                cart.push({
-                    id: id,
-                    name: item.name,
-                    sizeIndex: sizeIndex,
-                    sizeLabel: sizeLabels[sizeIndex],
-                    unitPrice: item.prices[sizeIndex],
-                    qty: qty,
-                    img: item.img
-                });
-            }
-            
-            // 1. Trigger the flying animation!
-            flyToCartAnimation(id);
-
-            // 2. Reset the product card quantity back to 1
-            document.getElementById(`qty-${id}`).innerText = "1";
-            updateCardPrice(id, category);
-            
-            // 3. Update the cart data and badge number
-            renderCart(); 
-        }
-
+function addToCart(id, category) {
+    const container = document.getElementById(`size-container-${id}`);
+    // Read which size index pill is currently active
+    const sizeIndex = container ? parseInt(container.getAttribute('data-selected-size') || '0') : 0;
+    const item = findItemInGlobal(id);
+    const qty = 1; // Direct add matches your reference site workflow perfectly
+    
+    const existingIndex = cart.findIndex(c => c.id === id && c.sizeIndex === sizeIndex);
+    if(existingIndex > -1) {
+        cart[existingIndex].qty += qty;
+    } else {
+        cart.push({
+            id: id,
+            name: item.name,
+            sizeIndex: sizeIndex,
+            sizeLabel: sizeLabels[sizeIndex],
+            unitPrice: item.prices[sizeIndex],
+            qty: qty,
+            img: item.img
+        });
+    }
+    
+    // Run flying image confirmation animation
+    if (typeof flyToCartAnimation === "function") {
+        flyToCartAnimation(id);
+    }
+    
+    // Render updated counts to cart sidebar screen
+    renderCart(); 
+}
         // --- NEW ANIMATION FUNCTION ---
         function flyToCartAnimation(id) {
             // Find the image of the product that was just clicked
